@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <title><?php echo $title; ?></title>
         <meta name="keywords" content="css3, login, form, custom, input, submit, button, html5, placeholder" />
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/style.css" />
         
         <!--[if lte IE 7]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
 		
@@ -18,11 +18,23 @@
 			<!-- Codrops top bar -->
 			
 			<section class="main">
-				<form class="form-2">
+					<?php // provee el formulario para hacer  log in
+			     echo validation_errors();
+			     $class = array('class' => 'form-2');
+			     echo form_open('login', $class);    
+				?>
+				<div class="LoginUsuariosError">
+			    <?php
+			    if(isset($error)){
+			      echo "<p>".$error."</p>";
+			    }
+			    echo form_error('login');
+			    ?>
+				</div>
 					<h1><span class="log-in">Ecoenergiza: </span><span class="sign-up">ECODATA</span></h1>
 					<p class="float">
-						<label for="login"><i class="icon-user"></i>Usuario</label>
-						<input type="text" name="login" placeholder="Nombre de usuario" required>
+						<label for="nick"><i class="icon-user"></i>Usuario</label>
+						<input type="text" name="nick" placeholder="Nombre de usuario" required>
 					</p>
 					<p class="float">
 						<label for="password"><i class="icon-lock"></i>Password</label>
@@ -30,7 +42,7 @@
 					</p>
 					<p class="clearfix"> 
 						
-						<input type="submit" name="submit" value="Iniciar sesión">
+						<input type="submit" name="ingresar" value="Iniciar sesión">
 					</p>
 				</form>​​
 			</section>
@@ -40,3 +52,4 @@
         
     </body>
 </html>
+

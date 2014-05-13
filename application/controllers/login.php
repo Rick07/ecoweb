@@ -7,17 +7,17 @@ class Login extends CI_Controller {
         parent::__construct();
         $this->load->library('user_agent');
 	
-		/*if (!$this->agent->is_browser('Chrome') && !$this->agent->is_browser('Safari'))
+		if (!$this->agent->is_browser('Chrome') && !$this->agent->is_browser('Safari'))
 				{
 					show_404();
-				}*/
+				}
 
     }
 
     public function index()
     {
-        $this->load->helper('form');
-    	$this->load->helper('url');
+        $this->load->helper(array('form', 'url', 'html'));
+
     	$this->load->library('form_validation');
         $data['title']="EcoData";
 
@@ -40,29 +40,23 @@ class Login extends CI_Controller {
     			$this->load->model('login_modelo');
                 $nick = $this->input->post('nick');
                 $pass = $this->input->post('password');
-                $iniciar = $this->login_modelo->verificar_login($nick, $pass); 
+                $iniciar = $this->login_modelo->verificarLogin($nick, $pass); 
 
     			if($iniciar)
     			{
-                    $dato = $this->login_modelo->verifica_usuario_nivel($nick);
-
-                    foreach ($dato as $key) {
-                        $usu = $key['username'];
-                        $nivel = $key['nivel'];
-                    }
+                    $dato = $this->login_modelo->getUsuario($nick);
 
                     $this->load->library('session');
-                    $data = array('usu' => $usu,
-                                    'nivel' => $nivel);
+                    $data = array('nombre' => $nombre);
                     
                     $this->session->set_userdata($data);
-                    header("Location: http://localhost/AlmacenMedico/index.php/menu");
+                    header("Location: http://localhost/ecodata/index.php/main");
     			}
     			else
     			{
-                    $data['title']="Almacen Médico";
-    				//$data['error']="No Estas Autorizado, por favor ingresa correctamente tus datos para acceder al sistema.";
-					$data['error']="SE ESTA REALIZANDO MANTENIMIENTO EN ESTE MOMENTO. POR FAVOR INTENTA ACCEDER MAS TARDE.";
+                    $data['title']="EcoData";
+    				$data['error']="No Estas Autorizado, por favor ingresa correctamente tus datos para acceder al sistema.";
+					//$data['error']="SE ESTA REALIZANDO MANTENIMIENTO EN ESTE MOMENTO. POR FAVOR INTENTA ACCEDER MAS TARDE.";
                     $this->load->view('login_vista', $data);
     			}
     		}

@@ -49,8 +49,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'eco';
-$db['default']['password'] = 'ci2datav1';
+$db['default']['username'] = 'eco2data';
+$db['default']['password'] = '4s14t3checo';
 $db['default']['database'] = 'ecodata';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
