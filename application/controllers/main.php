@@ -28,23 +28,27 @@ class Main extends CI_Controller {
  
     	$name   = $_FILES['file']['name'];
      	$tname  = $_FILES['file']['tmp_name'];
+     	$idequipo = 1;
  
         $obj_excel = PHPExcel_IOFactory::load($tname);       
-       	$sheetData = $obj_excel->getActiveSheet()->toArray(null,true,true,true);
+       	$sheetData = $obj_excel->getActiveSheet()->toArray(true,true,true,true,true,true);
  
        	$arr_datos = array();
        	foreach ($sheetData as $index => $value) {            
             if ( $index != 1 ){
                 $arr_datos = array(
-                    'campo'  => $value['A'],
-                    'campo1'  =>  $value['B'],
-                    'campo2' =>  $value['C'],
-                    'campo3'  =>  $value['D'],                                        
+                    'fecha'  =>  (string)$value['A'],
+                    'hora' =>  (string)$value['B'],
+                    'energiageneradadia'  =>  (double)$value['C'],                                        
+                    'tiempogeneraciondiaria'  =>  (string)$value['D'],
+                    'energiatotal'  =>  (int)$value['E'],
+                    'tiempototal'  =>  (double)$value['F'],
+                    'equipoid'  =>  $idequipo,
                 ); 
 		foreach ($arr_datos as $llave => $valor) {
 			$arr_datos[$llave] = $valor;
 		}
-		$this->db->insert('example_table',$arr_datos);	
+		$this->db->insert('datos',$arr_datos);	
             } 
        	}
        	$result['valid'] = true;
