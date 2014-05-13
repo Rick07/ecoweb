@@ -45,10 +45,14 @@ class Login extends CI_Controller {
     			if($iniciar)
     			{
                     $dato = $this->login_modelo->getUsuario($nick);
-
                     $this->load->library('session');
-                    $data = array('nombre' => $nombre);
                     
+                    foreach($dato as $key)
+                    {
+                        $nombre = $key['nombre'];
+                    }
+
+                    $data = array('nombre' => $nombre);
                     $this->session->set_userdata($data);
                     header("Location: http://localhost/ecodata/index.php/main");
     			}
