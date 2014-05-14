@@ -1,30 +1,13 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Main extends CI_Controller {
-
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->database();
-        /*$this->load->library('session');
-        $nombre = $this->session->userdata('nombre');
-        if(!($nombre))
-        {
-        	header("Location: http://localhost/ecodata");
-        }*/
-	}
+class Datos extends CI_Controller {
 
 	public function index()
 	{
-		//$this->load->helper(array('form', 'url', 'html'));
-		//$data['nombre'] = $this->session->userdata('nombre');
-		//$this->load->view('ingresaExcelVista');
-        $this->load->view('chart');
-
+		
 	}
 
-	//Importar desde Excel con libreria de PHPExcel
-    public function importarExcel(){
+	public function importarDatosExcel(){
     	//Cargar PHPExcel library
         $this->load->library('Excel');
  
@@ -90,6 +73,6 @@ class Main extends CI_Controller {
 
 }
 
-/* End of file main.php */
-/* Location: ./application/views/main.php */
+/* End of file datos.php */
+/* Location: ./application/controllers/datos.php */
 ?>
