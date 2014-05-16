@@ -29,7 +29,7 @@ class Login extends CI_Controller {
     	else
     	{
     		$this->form_validation->set_rules('nick', 'Nombre de usuario', 'trim|required');
-    		$this->form_validation->set_rules('password', 'contraseña', 'trim|required');
+    		$this->form_validation->set_rules('password', 'contraseña', 'trim|required|md5');
 
     		if($this->form_validation->run() == FALSE)
     		{
@@ -44,17 +44,10 @@ class Login extends CI_Controller {
 
     			if($iniciar)
     			{
-                    $dato = $this->login_modelo->getUsuario($nick);
                     $this->load->library('session');
-                    
-                    foreach($dato as $key)
-                    {
-                        $nombre = $key['nombre'];
-                    }
-
-                    $data = array('nombre' => $nombre);
-                    $this->session->set_userdata($data);
-                    header("Location: http://localhost/ecodata/index.php/main");
+                    $distribuidor = $this->login_modelo->getUsuarioIdNombre($nick);
+                    $this->session->set_userdata($distribuidor);
+                    redirect("main/plot");
     			}
     			else
     			{
@@ -66,6 +59,7 @@ class Login extends CI_Controller {
     		}
     	}
     }
+
 }
 
  ?>

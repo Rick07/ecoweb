@@ -49,11 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-//$db['default']['username'] = 'hellena';
-//$db['default']['password'] = 'elehola';
 $db['default']['username'] = 'eco2data';
 $db['default']['password'] = '4s14t3checo';
-$db['default']['database'] = 'ecodata';
+$db['default']['database'] = 'ecoweb';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

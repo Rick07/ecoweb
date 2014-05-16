@@ -17,13 +17,24 @@ class Login_modelo extends CI_Model {
 		return $query->row();
 	}
 
-	public function getUsuario($nick)
+	public function getUsuarioIdNombre($nick)
 	{
 		
 		$query = $this->db->where('nick', $nick);
 		$query = $this->db->get('distribuidor');
 
-		 return $query->result_array();
+		$dato = $query->result_array();
+
+		 foreach($dato as $key)
+                    {
+                    	$id = $key['iddistribuidor'];
+                        $nombre = $key['nombre'];
+                    }
+
+         $datos = array('id' => $id,
+         				'nombre' => $nombre);
+
+		 return $datos;
 	}
 
 }

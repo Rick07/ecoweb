@@ -5,21 +5,22 @@ class Main extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->database();
-        /*$this->load->library('session');
+
+        $this->load->library('session');
         $nombre = $this->session->userdata('nombre');
+        $this->load->helper(array('form', 'url', 'html'));
         if(!($nombre))
         {
-        	header("Location: http://localhost/ecodata");
-        }*/
+           redirect('login');
+        }
 	}
 
-	public function index()
+	public function plot()
 	{
 		//$this->load->helper(array('form', 'url', 'html'));
-		//$data['nombre'] = $this->session->userdata('nombre');
-		//$this->load->view('ingresaExcelVista');
-        $this->load->view('chart');
+		//$data['id'] = $this->session->userdata('id');
+        //$data['nombre'] = $this->session->userdata('nombre');
+		//$this->load->view('ingresaExcelVista', $data);
 
 	}
 
@@ -50,6 +51,7 @@ class Main extends CI_Controller {
 		foreach ($arr_datos as $llave => $valor) {
 			$arr_datos[$llave] = $valor;
 		}
+        $this->load->database();
 		$this->db->insert('datos',$arr_datos);	
             } 
        	}
@@ -86,6 +88,12 @@ class Main extends CI_Controller {
         print json_encode($result, JSON_NUMERIC_CHECK);
 
 
+    }
+
+    function salir()
+    { 
+       $this->session->sess_destroy();//cerramos la sesion
+       redirect("login");
     }
 
 }
