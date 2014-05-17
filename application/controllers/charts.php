@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Plots extends CI_Controller {
+class Charts extends CI_Controller {
 
 	public function __construct()
     {
@@ -17,13 +17,13 @@ class Plots extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('plots/plots_vista');
+		$this->load->view('charts/charts_vista');
 	}
 
      public function data()
     {
-        $this->load->model('plots_modelo');
-        $data = $this->plots_modelo->get_data();
+        $this->load->model('charts_modelo');
+        $data = $this->charts_modelo->get_data();
         
         $category = array();
         $category['name'] = 'Fecha';

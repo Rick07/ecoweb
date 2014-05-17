@@ -1,6 +1,6 @@
 <?php 
 
-class Plots_modelo extends CI_Model {
+class Charts_modelo extends CI_Model {
 
 	public function __construct()
 	{

@@ -5,13 +5,7 @@ class Data_modelo extends CI_Model {
 	function __construct()
     {
         parent::__construct();
-        $this->load->database();
-    }
-    
-    function get_data()
-    {
-	    $query = $this->db->get('datos');
-	    return $query->result();
+        
     }
 
 }

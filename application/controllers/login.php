@@ -47,7 +47,7 @@ class Login extends CI_Controller {
                     $this->load->library('session');
                     $distribuidor = $this->login_modelo->getUsuarioIdNombre($nick);
                     $this->session->set_userdata($distribuidor);
-                    redirect("main/plot");
+                    redirect("datos");
     			}
     			else
     			{

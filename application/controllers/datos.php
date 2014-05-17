@@ -59,33 +59,6 @@ class Datos extends CI_Controller {
     	     ->set_output(json_encode($result)); 		
     }
 
-    public function data()
-    {
-        $this->load->model('plots_modelo');
-        $data = $this->plots_modelo->get_data();
-        
-        $category = array();
-        $category['name'] = 'Fecha';
-        
-        $series1 = array();
-        $series1['name'] = 'Energia generada al día';
-    
-        
-        foreach ($data as $row)
-        {
-            $category['data'][] = $row->fecha;
-            $series1['data'][] = $row->energiageneradadia;
-        }
-        
-        $result = array();
-        array_push($result,$category);
-        array_push($result,$series1);
-        
-        print json_encode($result, JSON_NUMERIC_CHECK);
-
-
-    }
-
 }
 
 /* End of file datos.php */
