@@ -1,5 +1,8 @@
 $(document).ready(function() {
-            var options = {
+            $("#target").click(function(evento){
+      //elimino el comportamiento por defecto del enlace
+      evento.preventDefault();
+      var options = {
                 chart: {
                     renderTo: 'container',
                     type: 'column',
@@ -51,4 +54,5 @@ $(document).ready(function() {
                 chart = new Highcharts.Chart(options);
                 Highcharts.setOptions(Highcharts.theme);
             });
+   });
         });

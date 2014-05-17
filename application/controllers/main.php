@@ -15,11 +15,19 @@ class Main extends CI_Controller {
         }
 	}
 
-    function salir()
-    { 
-       $this->session->sess_destroy();//cerramos la sesion
-       redirect("login");
-    }
+  public function index()
+  {
+    $data['id'] = $this->session->userdata('id');
+    $data['nombre'] = $this->session->userdata('nombre');
+    $this->load->view('main_vista');
+    $this->load->view('ingresaExcelVista', $data);
+  }
+
+  public function salir()
+  { 
+      $this->session->sess_destroy();//cerramos la sesion
+      redirect("login");
+  }
 
 }
 

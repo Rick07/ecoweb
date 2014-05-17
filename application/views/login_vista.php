@@ -25,13 +25,11 @@
 				?>
 				<div class="LoginUsuariosError">
 			    <?php
-			    if(isset($error)){
-			      echo "<p>".$error."</p>";
-			    }
+			    if(isset($error)) { echo "<p>".$error."</p>"; }
 			    echo form_error('login');
 			    ?>
 				</div>
-					<h1><span class="log-in">Ecoenergiza: </span><span class="sign-up">ECODATA</span></h1>
+					<h1><span class="log-in">Ecoenergiza: </span><span class="sign-up">ECOWEB</span></h1>
 					<p class="float">
 						<label for="nick"><i class="icon-user"></i>Usuario</label>
 						<input type="text" name="nick" placeholder="Nombre de usuario" required>

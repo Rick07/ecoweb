@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-            <title></title>
-    </head>
-    <body>
+
     	<p><?php echo $id.' '.$nombre?></p>
         <a href="<?php echo base_url()?>">asS</a>
     	<?php //echo br(3)?>
