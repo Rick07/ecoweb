@@ -2,6 +2,7 @@ $(document).ready(function() {
             $("#target").click(function(evento){
       //elimino el comportamiento por defecto del enlace
       evento.preventDefault();
+      var url = "charts/data";
       var options = {
                 chart: {
                     renderTo: 'container',
@@ -22,7 +23,7 @@ $(document).ready(function() {
                 },
                 yAxis: {
                     title: {
-                        text: 'Energía'
+                        text: 'Energía en KWh'
                     },
                     plotLines: [{
                         value: 0,
@@ -48,11 +49,10 @@ $(document).ready(function() {
                 series: []
             }
             
-            $.getJSON("data", function(json) {
+            $.getJSON(url, function(json) {
                 options.xAxis.categories = json[0]['data'];
                 options.series[0] = json[1];
                 chart = new Highcharts.Chart(options);
-                Highcharts.setOptions(Highcharts.theme);
             });
    });
         });
