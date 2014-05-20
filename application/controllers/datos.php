@@ -48,15 +48,16 @@ class Datos extends CI_Controller {
 		foreach ($arr_datos as $llave => $valor) {
 			$arr_datos[$llave] = $valor;
 		}
-		$this->db->insert('datos',$arr_datos);	
+        $this->load->database();
+		$this->db->insert('datos',$arr_datos);
+        echo "<script language='JavaScript'>
+             {
+               alert('Datos importados correctamente');  
+               setTimeout(location.href='http://localhost/ecoweb/main', 2000);}
+                </script>";     	
             } 
        	}
-       	$result['valid'] = true;
-	$result['message'] = 'Productos importados correctamente';
- 
-	$this->output
-    	     ->set_content_type('application/json')
-    	     ->set_output(json_encode($result)); 		
+       	
     }
 
 }

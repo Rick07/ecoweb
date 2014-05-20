@@ -11,49 +11,15 @@
     <script src="<?php echo base_url()?>js/jquery-ui-1.10.4.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url()?>js/navtabs.js"></script>
     <!-- Include one of jTable styles. -->
-<link href="<?php echo base_url()?>js/jtable/themes/metro/blue/jtable.min.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url()?>js/jtable/themes/lightcolor/red/jtable.min.css" rel="stylesheet" type="text/css" />
  
 <!-- Include jTable script file. -->
 <script src="<?php echo base_url()?>js/jtable/jquery.jtable.js" type="text/javascript"></script>
      <!-- Bootstrap -->
     <script src="<?php echo base_url()?>bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-        $('#PersonTableContainer').jtable({
-            title: 'Table of people',
-            actions: {
-                listAction: '/GettingStarted/PersonList',
-                createAction: '/GettingStarted/CreatePerson',
-                updateAction: '/GettingStarted/UpdatePerson',
-                deleteAction: '/GettingStarted/DeletePerson'
-            },
-            fields: {
-                PersonId: {
-                    key: true,
-                    list: false
-                },
-                Name: {
-                    title: 'Author Name',
-                    type: 'textarea',
-                    width: '40%'
-                },
-                Age: {
-                    title: 'Age',
-                    width: '20%'
-                },
-                RecordDate: {
-                    title: 'Record date',
-                    width: '30%',
-                    type: 'date',
-                    create: false,
-                    edit: false
-                }
-            }
-        });
-    });
-</script>
   </head>
   <body>
+    <p><?php echo $id.' '.$nombre?><a href="<?php echo base_url()?>main/salir">Cerrar sesion</a></p>
      <img src="<?php echo base_url();?>images/logotipo.png" alt="logotipo" height="85" width="254">
    <!-- Nav tabs -->
 <ul class="nav nav-tabs">
@@ -62,6 +28,5 @@
   <li id="tablero"><a href="#tablero" data-toggle="tab">Tablero de datos</a></li>
 </ul>
 <div id="seccion"></div>
-<div id="PersonTableContainer" style="width: 600px;"></div>
 </body>
 </html>

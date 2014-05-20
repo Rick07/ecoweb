@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     $('#instalaciones').click(function() {  
             $.ajax({  
-                url: '',  
+                url: 'instalaciones',  
                 success: function(data) {  
                     $('#seccion').html(data);  
                 }  
