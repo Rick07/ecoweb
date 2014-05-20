@@ -13,6 +13,7 @@ class Charts extends CI_Controller {
         {
            redirect('login');
         }
+        $this->load->model('charts_modelo');
     }
 
 	public function index()
@@ -20,11 +21,15 @@ class Charts extends CI_Controller {
 		$this->load->view('charts/charts_vista');
 	}
 
-     public function data()
+     public function datosDia()
     {
-        $this->load->model('charts_modelo');
-        $result = $this->charts_modelo->get_data();
-        
+        $result = $this->charts_modelo->getDataDay();
+        print json_encode($result, JSON_NUMERIC_CHECK);
+    }
+
+    public function datosHora()
+    {
+        $result = $this->charts_modelo->getDataHour();
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
 
