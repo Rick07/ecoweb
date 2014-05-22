@@ -7,7 +7,7 @@ class Login extends CI_Controller {
         parent::__construct();
         $this->load->library('user_agent');
 	
-		if (!$this->agent->is_browser('Chrome') && !$this->agent->is_browser('Safari'))
+		if (!$this->agent->is_browser('Chrome') && !$this->agent->is_browser('Firefox') && !$this->agent->is_browser('Safari'))
 				{
 					show_404();
 				}

@@ -19,7 +19,7 @@ class Datos extends CI_Controller {
 	{
         $data['id'] = $this->session->userdata('id');
         $data['nombre'] = $this->session->userdata('nombre');
-        $this->load->view('ingresaExcelVista', $data);
+        $this->load->view('datos/ingresaExcelVista', $data);
 	}
 
 	public function importarDatosExcel(){

@@ -8,11 +8,12 @@ class Main extends CI_Controller {
 
         $this->load->library('session');
         $nombre = $this->session->userdata('nombre');
-        $this->load->helper(array('form', 'url', 'html'));
+        $this->load->helper('url');
         if(!($nombre))
         {
-           redirect('login');
+           redirect("login");
         }
+        $this->load->helper(array('form', 'html'));
 	}
 
   public function index()

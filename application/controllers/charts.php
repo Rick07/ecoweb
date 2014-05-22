@@ -8,11 +8,12 @@ class Charts extends CI_Controller {
 
         $this->load->library('session');
         $nombre = $this->session->userdata('nombre');
-        $this->load->helper(array('form', 'url', 'html'));
+        $this->load->helper('url');
         if(!($nombre))
         {
            redirect('login');
         }
+        $this->load->helper(array('form', 'html'));
         $this->load->model('charts_modelo');
     }
 
