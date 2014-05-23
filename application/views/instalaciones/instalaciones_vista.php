@@ -1,4 +1,4 @@
-<div id="instalacionTabla" style="width: 600px;"></div>
+<div id="instalacionTabla" style="width: 700px;"></div>
 <!-- Button trigger modal -->
 <button class="btn btn-primary btn-info" data-toggle="modal" data-target="#nuevaInst">Nueva</button>
 
@@ -77,7 +77,8 @@
         $('#instalacionTabla').jtable({
             title: 'Instalaciones',
             actions: {
-                listAction: base_url+'instalaciones/listarInstalaciones'
+                listAction: base_url+'instalaciones/listarInstalaciones',
+                deleteAction: base_url+'instalaciones/borrarInstalacion'
             },
             fields: {
                 idinstalacion: {
@@ -91,27 +92,23 @@
                 },
                 categoria: {
                     title: 'Categoria',
-                    width: '30%'
+                    width: '20%'
                 },
                 tipocompra: {
                     title: 'Tipo de compra',
-                    width: '30%'
+                    width: '20%'
                 },
                 direccion: {
                     title: 'Direccion',
-                    width: '50%'
+                    width: '70%'
                 },
                 nombre: {
                     title: 'Nombre',
-                    width: '30%'   
+                    width: '50%'   
                 },
-                codigoestado: {
+                sName: {
                     title: 'Zona',
-                    width: '30%'
-                },
-                distribuidorid: {
-                    title: 'Dist',
-                    width: '30%'
+                    width: '50%'
                 }
             }
         });

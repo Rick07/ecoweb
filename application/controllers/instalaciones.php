@@ -48,15 +48,14 @@ class Instalaciones extends CI_Controller {
 
 	public function listarInstalaciones()
 	{
-		//$id = $this->session->userdata('id');
+		$id = $this->session->userdata('id');
 		$this->load->model('instalaciones_modelo');
-		$datos = $this->instalaciones_modelo->listarInstalacionesIdDist();
+		$datos = $this->instalaciones_modelo->listarInstalacionesIdDist($id);
 		$data = array();
 		
 		foreach($datos as $key)
                     {
                     	$data[] = $key;
-  
                     }
 
 		//Return result to jTable
@@ -65,6 +64,18 @@ class Instalaciones extends CI_Controller {
 		$jTableResult['Records'] = $data;
 		print json_encode($jTableResult);
 
+	}
+
+	public function borrarInstalacion()
+	{
+		$id = $this->input->post('idinstalacion');
+		$this->load->model('instalaciones_modelo');
+		$this->instalaciones_modelo->borrarInstalacion($id);
+
+		//Return result to jTable
+		$jTableResult = array();
+		$jTableResult['Result'] = "OK";
+		print json_encode($jTableResult);
 	}
 
 }

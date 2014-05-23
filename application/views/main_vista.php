@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="<?php echo base_url()?>bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="<?php echo base_url()?>css/ui-lightness/jquery-ui-1.10.4.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>css/blitzer/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
     <!-- Jquery -->
     <script src="<?php echo base_url()?>js/jquery-1.8.2.min.js"></script>
-    <script src="<?php echo base_url()?>js/jquery-ui-1.10.4.min.js"></script>
+    <script src="<?php echo base_url()?>js/jquery-ui-1.10.4.custom.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url()?>js/navtabs.js"></script>
     <!-- Include one of jTable styles. -->
-<link href="<?php echo base_url()?>js/jtable/themes/lightcolor/red/jtable.min.css" rel="stylesheet" type="text/css" />
- 
-<!-- Include jTable script file. -->
-<script src="<?php echo base_url()?>js/jtable/jquery.jtable.js" type="text/javascript"></script>
+    <link href="<?php echo base_url()?>js/jtable/themes/lightcolor/blue/jtable.min.css" rel="stylesheet" type="text/css" />
+     
+    <!-- Include jTable script file. -->
+    <script src="<?php echo base_url()?>js/jtable/jquery.jtable.js" type="text/javascript"></script>
      <!-- Bootstrap -->
     <script src="<?php echo base_url()?>bootstrap/js/bootstrap.min.js"></script>
   </head>

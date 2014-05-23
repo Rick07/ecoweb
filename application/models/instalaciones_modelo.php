@@ -7,9 +7,10 @@ class Instalaciones_modelo extends CI_Model {
 		$this->load->database();
 	}
 
-	public function listarInstalacionesIdDist()
+	public function listarInstalacionesIdDist($id)
 	{
-		//$query = $this->db->where('distribuidorid', $id);
+		$query = $this->db->where('distribuidorid', $id);
+		$query = $this->db->join('state', 'instalacion.codigoestado = state.sCode');
 		$query = $this->db->get('instalacion');
 		return $query->result_array();
 	}
@@ -25,7 +26,14 @@ class Instalaciones_modelo extends CI_Model {
 			'distribuidorid' => $this->input->post('idDistribuidor'));
 
 		return $this->db->insert('instalacion', $data);
-	}	
+	}
+
+	public function borrarInstalacion($id)
+	{
+		$this->db->where('idinstalacion', $id);
+		
+		return $this->db->delete('instalacion');
+	}
 
 }
 
