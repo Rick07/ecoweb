@@ -46,6 +46,27 @@ class Instalaciones extends CI_Controller {
 		
 	}
 
+	public function listarInstalaciones()
+	{
+		//$id = $this->session->userdata('id');
+		$this->load->model('instalaciones_modelo');
+		$datos = $this->instalaciones_modelo->listarInstalacionesIdDist();
+		$data = array();
+		
+		foreach($datos as $key)
+                    {
+                    	$data[] = $key;
+  
+                    }
+
+		//Return result to jTable
+		$jTableResult = array();
+		$jTableResult['Result'] = "OK";
+		$jTableResult['Records'] = $data;
+		print json_encode($jTableResult);
+
+	}
+
 }
 
 /* End of file instalacion.php */

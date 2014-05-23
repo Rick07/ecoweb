@@ -7,6 +7,13 @@ class Instalaciones_modelo extends CI_Model {
 		$this->load->database();
 	}
 
+	public function listarInstalacionesIdDist()
+	{
+		//$query = $this->db->where('distribuidorid', $id);
+		$query = $this->db->get('instalacion');
+		return $query->result_array();
+	}
+
 	public function nuevaInstalacion()
 	{
 		$data = array('tiposistema' => $this->input->post('tipoSistema'),

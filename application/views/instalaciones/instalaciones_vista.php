@@ -1,4 +1,4 @@
-<div id="PersonTableContainer" style="width: 600px;"></div>
+<div id="instalacionTabla" style="width: 600px;"></div>
 <!-- Button trigger modal -->
 <button class="btn btn-primary btn-info" data-toggle="modal" data-target="#nuevaInst">Nueva</button>
 
@@ -73,37 +73,49 @@
 
  <script type="text/javascript">
     $(document).ready(function () {
-        $('#PersonTableContainer').jtable({
+      var base_url = "<?=base_url()?>"; 
+        $('#instalacionTabla').jtable({
             title: 'Instalaciones',
             actions: {
-                listAction: '/GettingStarted/PersonList',
-                createAction: '/GettingStarted/CreatePerson',
-                updateAction: '/GettingStarted/UpdatePerson',
-                deleteAction: '/GettingStarted/DeletePerson'
+                listAction: base_url+'instalaciones/listarInstalaciones'
             },
             fields: {
-                PersonId: {
-                    key: true,
-                    list: false
-                },
-                Name: {
+                idinstalacion: {
                     title: 'ID',
-                    type: 'textarea',
-                    width: '40%'
+                    key: true,
+                    width: '10%'
                 },
-                Age: {
+                tiposistema: {
+                    title: 'Tipo de sistema',
+                    width: '30%'
+                },
+                categoria: {
+                    title: 'Categoria',
+                    width: '30%'
+                },
+                tipocompra: {
+                    title: 'Tipo de compra',
+                    width: '30%'
+                },
+                direccion: {
+                    title: 'Direccion',
+                    width: '50%'
+                },
+                nombre: {
                     title: 'Nombre',
-                    width: '20%'
+                    width: '30%'   
                 },
-                RecordDate: {
-                    title: 'Tipo',
-                    width: '30%',
-                    type: 'date',
-                    create: false,
-                    edit: false
+                codigoestado: {
+                    title: 'Zona',
+                    width: '30%'
+                },
+                distribuidorid: {
+                    title: 'Dist',
+                    width: '30%'
                 }
             }
         });
+          $('#instalacionTabla').jtable('load');
     });
 </script>
 <script language="javascript">
