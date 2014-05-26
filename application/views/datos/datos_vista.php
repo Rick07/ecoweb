@@ -45,6 +45,8 @@
                 <?php endforeach ?>
             </select>
           </div>
+          <div id="equipos" class="form-group">
+          </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
             <input type="submit" class="btn btn-primary" value="Guardar">
@@ -112,4 +114,14 @@ $(document).ready(function() {
         return false;
     }); 
 })  
+</script>
+<script type="text/javascript">
+ $('#instalacion').click(function() {  
+        $.ajax({  
+            url: 'equipos/listarEquiposAjax',  
+            success: function(data) {  
+                $('#equipos').html(data);  
+            }  
+        });  
+    });
 </script>

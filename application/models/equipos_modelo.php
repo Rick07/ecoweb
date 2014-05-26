@@ -17,6 +17,13 @@ class Equipos_modelo extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function listarEquiposAjax($idequipo)
+	{
+		$query = $this->db->where('idequipo', $idequipo);
+		$query = $this->db->get('equipo');
+		return $query->result_array();
+	}
+
 	public function nuevoEquipo()
 	{
 		$data = array('tipo' => $this->input->post('tipoEquipo'),

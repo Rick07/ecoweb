@@ -64,6 +64,11 @@ class Equipos extends CI_Controller {
 
     }
 
+    public function listarEquiposAjax()
+    {
+       #code here
+    }
+
     public function borrarEquipo()
     {
         $id = $this->input->post('idequipo');
