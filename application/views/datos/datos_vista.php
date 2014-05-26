@@ -1,7 +1,7 @@
-<div id="equipoTabla" style="width: 700px;"></div>
+<div id="datosTabla" style="width: 700px;"></div>
 <!-- Button trigger modal -->
 <button class="btn btn-primary btn-info" data-toggle="modal" data-target="#nuevo">Nuevo</button>
-
+<?php date_default_timezone_set("America/Mexico_City"); ?> 
 <!-- Modal -->
 <div class="modal fade" id="nuevo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -12,27 +12,29 @@
       </div>
       <div class="modal-body">
         <?php echo validation_errors(); 
-         $atr = array('id' => 'nuevoEquipo', 'autocomplete' => 'off'); 
-        echo form_open('equipos/nuevoEquipo', $atr); ?>
-          <div class="form-group">
-            <label for="tipoEquipo">Tipo de equipo</label>
-            <select class="form-control" id="tipoEquipo" name="tipoEquipo" required>
-                <option value="">Seleccione el tipo de equipo:</option>
-                <option>Inversor</option>
-                <option>MicroInversor</option>
-            </select>
+         $atr = array('id' => 'nuevosDat', 'autocomplete' => 'off'); 
+        echo form_open('datos/nuevosDatos', $atr); ?>
+        <input type="hidden" name="fecha" value="<?php echo date('Y-m-d'); ?>">
+        <input type="hidden" name="hora" value="<?php echo date("h:i:s A"); ?>">
+         <div class="form-group">
+            <label for="fechahora">Fecha y Hora</label>
+            <input type="text"  id="fechahora" value="<?php echo date('d-m-Y - h:i:s A'); ?>" class="form-control" placeholder="Ingrese la energía generada al día" required>
           </div>
           <div class="form-group">
-            <label for="numparte">Número de parte</label>
-            <input type="number"  min="0" id="numparte" name="numeroParte" class="form-control" placeholder="Escriba el numero de parte" required>
+            <label for="energiadia">Energía generada al día (KWh)</label>
+            <input type="number" step="0.01"  min="0" id="energiadia" name="energiadia" class="form-control" placeholder="Ingrese la energía generada al día" required>
           </div>
           <div class="form-group">
-            <label for="serie"> <span>Serie</span></label>
-            <input type="text" id="serie" name="serie" class="form-control" placeholder="Escriba el numero de serie" required>
+            <label for="tiempodiario"> <span>Tiempo de generación diaria</span></label>
+            <input type="time" id="tiempodiario"  name="tiempodiario" class="form-control" required>
           </div>
           <div class="form-group">
-            <label for="modelo">Modelo</label>
-            <input type="text" id="modelo" name="modelo" class="form-control" placeholder="Escriba el modelo" required>
+            <label for="energiatotal">Energía total (KWh)</label>
+            <input type="number" min="0" id="energiatotal" name="energiatotal" class="form-control" placeholder="Ingrese la energía total generada" required>
+          </div>
+          <div class="form-group">
+            <label for="energiatotal">Tiempo total (Hrs)</label>
+            <input type="number" min="0" step="0.01" id="energiatotal" name="energiatotal" class="form-control" placeholder="Ingrese la energía total generada" required>
           </div>
            <div class="form-group">
             <label for="instalacion">Instalación</label>
@@ -56,7 +58,7 @@
  <script type="text/javascript">
     $(document).ready(function () {
       var base_url = "<?=base_url()?>"; 
-        $('#equipoTabla').jtable({
+        $('#datosTabla').jtable({
             title: 'Equipo',
             actions: {
                 listAction: base_url+'equipos/listarEquipos',
@@ -90,13 +92,13 @@
                 }
             }
         });
-          $('#equipoTabla').jtable('load');
+          $('#datosTabla').jtable('load');
     });
 </script>
 <script language="javascript">
 $(document).ready(function() {
    // Interceptamos el evento submit
-    $('#nuevoEquipo').submit(function() {
+    $('#nuevosDat').submit(function() {
   // Enviamos el formulario usando AJAX
         $.ajax({
             type: 'POST',

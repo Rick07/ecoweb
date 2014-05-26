@@ -13,14 +13,26 @@ class Datos extends CI_Controller {
         {
            redirect('login');
         }
+        $this->load->model('instalaciones_modelo');
     }
 
 	public function index()
 	{
-        $data['id'] = $this->session->userdata('id');
-        $data['nombre'] = $this->session->userdata('nombre');
-        $this->load->view('datos/ingresaExcelVista', $data);
+        $id = $this->session->userdata('id');
+        $data['instalacion'] = $this->instalaciones_modelo->listarInstalacionesIdDist($id);
+        $this->load->view('datos/datos_vista', $data);
 	}
+
+    public function excelVista()
+    {
+        $id = $this->session->userdata('id');
+        $this->load->view('datos/ingresaExcelVista');
+    }
+
+    public function nuevosDatos()
+    {
+        # code...
+    }
 
 	public function importarDatosExcel(){
     	//Cargar PHPExcel library

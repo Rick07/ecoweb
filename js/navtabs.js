@@ -18,6 +18,24 @@ $(document).ready(function(){
         });  
     });
 
+    $('#datosmanuales').click(function() {  
+        $.ajax({  
+            url: 'datos',  
+            success: function(data) {  
+                $('#seccion').html(data);  
+            }  
+        });  
+    });
+
+    $('#datosimportados').click(function() {  
+        $.ajax({  
+            url: 'datos/excelvista',  
+            success: function(data) {  
+                $('#seccion').html(data);  
+            }  
+        });  
+    });
+
     $('#tablero').click(function() {  
         $.ajax({  
             url: 'charts',  
@@ -25,6 +43,6 @@ $(document).ready(function(){
                 $('#seccion').html(data);  
             }  
         });  
-    });  
+    });
   
 });
