@@ -21,7 +21,7 @@ class Instalaciones_modelo extends CI_Model {
 			'categoria' => $this->input->post('tipoCategoria'),
 			'tipocompra' => $this->input->post('tipoCompra'),
 			'direccion' => $this->input->post('direccion'),
-			'nombre' => $this->input->post('nombreInstalacion'),
+			'nombreinstalacion' => $this->input->post('nombreInstalacion'),
 			'codigoestado' => $this->input->post('zona'),
 			'distribuidorid' => $this->input->post('idDistribuidor'));
 

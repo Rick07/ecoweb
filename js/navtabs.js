@@ -11,7 +11,7 @@ $(document).ready(function(){
   
     $('#equipos').click(function() {  
         $.ajax({  
-            url: 'datos',  
+            url: 'equipos',  
             success: function(data) {  
                 $('#seccion').html(data);  
             }  

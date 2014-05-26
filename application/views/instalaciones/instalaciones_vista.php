@@ -102,7 +102,7 @@
                     title: 'Direccion',
                     width: '70%'
                 },
-                nombre: {
+                nombreinstalacion: {
                     title: 'Nombre',
                     width: '50%'   
                 },
