@@ -64,7 +64,7 @@
             title: 'Datos generados',
             actions: {
                 listAction: base_url+'datos/listarDatos',
-                deleteAction: base_url+'equipos/borrarEquipo'
+                deleteAction: base_url+'datos/borrarDato'
             },
             fields: {
                 iddato: {

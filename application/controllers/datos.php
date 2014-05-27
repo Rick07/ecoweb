@@ -25,7 +25,9 @@ class Datos extends CI_Controller {
 
     public function excelVista()
     {
-        $this->load->view('datos/ingresaExcelVista');
+        $id = $this->session->userdata('id');
+        $data['instalacion'] = $this->instalaciones_modelo->listarInstalacionesIdDist($id);
+        $this->load->view('datos/ingresaExcelVista', $data);
     }
 
     public function listarDatos()
@@ -67,13 +69,25 @@ class Datos extends CI_Controller {
             }
     }
 
+    public function borrarDato()
+    {
+        $id = $this->input->post('iddato');
+        $this->load->model('datos_modelo');
+        $this->datos_modelo->borrarDato($id);
+
+        //Return result to jTable
+        $jTableResult = array();
+        $jTableResult['Result'] = "OK";
+        print json_encode($jTableResult);
+    }
+
 	public function importarDatosExcel(){
     	//Cargar PHPExcel library
         $this->load->library('Excel');
+        $idequipo = $this->input->post('equipo');
  
     	$name   = $_FILES['file']['name'];
      	$tname  = $_FILES['file']['tmp_name'];
-     	$idequipo = 1;
  
         $obj_excel = PHPExcel_IOFactory::load($tname);       
        	$sheetData = $obj_excel->getActiveSheet()->toArray(true,true,true,true,true,true);

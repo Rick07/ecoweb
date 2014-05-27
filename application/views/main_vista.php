@@ -24,7 +24,7 @@
           <li class="active">
             <a href="<?php echo base_url()?>main/salir">
               <span class="badge pull-right">Cerrar Sesión</span>
-              <?php echo $id.' '.$nombre?>
+              <?php echo $nombre?>
             </a>
           </li>
          </ul>

@@ -43,7 +43,7 @@ class Datos_modelo extends CI_Model {
 		return $this->db->insert('datos', $data);
 	}
 
-	public function borraDato($id)
+	public function borrarDato($id)
 	{
 		$this->db->where('iddato', $id);
 		

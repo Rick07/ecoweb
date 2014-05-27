@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-05-2014 a las 23:27:16
+-- Tiempo de generación: 27-05-2014 a las 23:59:21
 -- Versión del servidor: 5.5.16
 -- Versión de PHP: 5.3.8
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `datos`;
 CREATE TABLE IF NOT EXISTS `datos` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `iddato` int(5) NOT NULL AUTO_INCREMENT,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `energiageneradadia` double NOT NULL,
@@ -36,9 +36,21 @@ CREATE TABLE IF NOT EXISTS `datos` (
   `energiatotal` int(5) NOT NULL,
   `tiempototal` double NOT NULL,
   `equipoid` int(5) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`iddato`),
   KEY `equipoid` (`equipoid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=77 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Volcado de datos para la tabla `datos`
+--
+
+INSERT INTO `datos` (`iddato`, `fecha`, `hora`, `energiageneradadia`, `tiempogeneraciondiaria`, `energiatotal`, `tiempototal`, `equipoid`) VALUES
+(6, '2014-05-27', '15:45:28', 0.04, '05:03:00', 2, 0.03, 7),
+(7, '2014-02-02', '09:29:00', 1.4, '02:18:00', 5978, 2258.2, 6),
+(8, '2014-02-02', '10:31:00', 4.3, '03:21:00', 5981, 2259.3, 6),
+(9, '2014-02-02', '11:24:00', 6.8, '04:14:00', 5984, 2260.2, 6),
+(10, '2014-02-02', '12:23:00', 10.9, '05:13:00', 5988, 2261.2, 6),
+(11, '2014-02-02', '13:32:00', 15.4, '06:22:00', 5993, 2262.3, 6);
 
 -- --------------------------------------------------------
 
@@ -84,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `equipo` (
   `instalacionid` int(4) NOT NULL,
   PRIMARY KEY (`idequipo`),
   KEY `instalacionid` (`instalacionid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Volcado de datos para la tabla `equipo`
@@ -92,7 +104,8 @@ CREATE TABLE IF NOT EXISTS `equipo` (
 
 INSERT INTO `equipo` (`idequipo`, `tipo`, `numeroparte`, `serie`, `modelo`, `instalacionid`) VALUES
 (4, 'Inversor', 123, '1208M', 'TK-42', 129),
-(6, 'MicroInversor', 456, 'TYU8J', 'SKY-9', 128);
+(6, 'MicroInversor', 456, 'TYU8J', 'SKY-9', 128),
+(7, 'MicroInversor', 12345, 'ER56T', 'HP', 126);
 
 -- --------------------------------------------------------
 
