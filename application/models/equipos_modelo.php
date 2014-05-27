@@ -17,9 +17,9 @@ class Equipos_modelo extends CI_Model {
 		return $query->result_array();
 	}
 
-	public function listarEquiposAjax($idequipo)
+	public function listarEquiposAjax($idinstalacion)
 	{
-		$query = $this->db->where('idequipo', $idequipo);
+		$query = $this->db->where('instalacionid', $idinstalacion);
 		$query = $this->db->get('equipo');
 		return $query->result_array();
 	}

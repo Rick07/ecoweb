@@ -45,7 +45,7 @@
                 <?php endforeach ?>
             </select>
           </div>
-          <div id="equipos" class="form-group">
+          <div id="equi" class="form-group">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -113,15 +113,23 @@ $(document).ready(function() {
         })        
         return false;
     }); 
-})  
+});  
 </script>
 <script type="text/javascript">
- $('#instalacion').click(function() {  
-        $.ajax({  
-            url: 'equipos/listarEquiposAjax',  
-            success: function(data) {  
-                $('#equipos').html(data);  
-            }  
-        });  
+$(document).ready(function() {
+ $('#instalacion').change(function() {
+   var instalacion = $('#instalacion').val();  
+       $.ajax({
+            type: 'POST',
+            url: 'equipos/listarEquiposAjax',
+            data: instalacion,
+            // Mostramos un mensaje con la respuesta de PHP
+            success: function(data) {
+                $('#equi').html(data);
+                alert(instalacion);
+            }
+        });        
+        return false;
     });
+ });
 </script>
