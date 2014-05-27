@@ -32,7 +32,7 @@
 					<h1><span class="log-in">Ecoenergiza: </span><span class="sign-up">ECOWEB</span></h1>
 					<p class="float">
 						<label for="nick"><i class="icon-user"></i>Usuario</label>
-						<input type="text" name="nick" placeholder="Nombre de usuario" required>
+						<input type="text" name="nick" placeholder="Nombre de usuario" required></i>
 					</p>
 					<p class="float">
 						<label for="password"><i class="icon-lock"></i>Password</label>

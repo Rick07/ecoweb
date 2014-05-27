@@ -64,12 +64,12 @@ class Equipos extends CI_Controller {
 
     }
 
-    public function listarEquiposAjax()
+    public function listarEquiposIdInstalacion()
     {
         $idinstalacion = $this->input->post('instalacion');
         $this->load->model('equipos_modelo');
-        $data['equipo'] = $this->equipos_modelo->listarEquiposAjax($idinstalacion);
-        $this->load->view('equipos/equiposAjax_vista', $data);
+        $data['equipo'] = $this->equipos_modelo->listarEquiposIdInstalacion($idinstalacion);
+        $this->load->view('equipos/equiposIdInstalacion_vista', $data);
     }
 
     public function borrarEquipo()

@@ -1,4 +1,4 @@
-<div id="datosTabla" style="width: 700px;"></div>
+<div id="datosTabla" style="width: 1050px;"></div>
 <!-- Button trigger modal -->
 <button class="btn btn-primary btn-info" data-toggle="modal" data-target="#nuevo">Nuevo</button>
 <?php date_default_timezone_set("America/Mexico_City"); ?> 
@@ -8,24 +8,24 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Registro de nuevo Equipo</h4>
+        <h4 class="modal-title" id="myModalLabel">Registro de Datos</h4>
       </div>
       <div class="modal-body">
         <?php echo validation_errors(); 
          $atr = array('id' => 'nuevosDat', 'autocomplete' => 'off'); 
-        echo form_open('datos/nuevosDatos', $atr); ?>
-        <input type="hidden" name="fecha" value="<?php echo date('Y-m-d'); ?>">
-        <input type="hidden" name="hora" value="<?php echo date("h:i:s A"); ?>">
+        echo form_open('datos/newData', $atr); ?>
+        <input type="hidden" name="fecha" value="<?php echo date('Y-m-d');?>">
+        <input type="hidden" name="hora" value="<?php echo date('H:i:s'); ?> ">
          <div class="form-group">
             <label for="fechahora">Fecha y Hora</label>
-            <input type="text"  id="fechahora" value="<?php echo date('d-m-Y - h:i:s A'); ?>" class="form-control" placeholder="Ingrese la energía generada al día" required>
+            <input type="text"  id="fechahora" value="<?php echo date('d-m-Y - h:i A'); ?>" class="form-control" readonly>
           </div>
           <div class="form-group">
             <label for="energiadia">Energía generada al día (KWh)</label>
             <input type="number" step="0.01"  min="0" id="energiadia" name="energiadia" class="form-control" placeholder="Ingrese la energía generada al día" required>
           </div>
           <div class="form-group">
-            <label for="tiempodiario"> <span>Tiempo de generación diaria</span></label>
+            <label for="tiempodiario">Tiempo de generación diaria</label>
             <input type="time" id="tiempodiario"  name="tiempodiario" class="form-control" required>
           </div>
           <div class="form-group">
@@ -34,12 +34,12 @@
           </div>
           <div class="form-group">
             <label for="energiatotal">Tiempo total (Hrs)</label>
-            <input type="number" min="0" step="0.01" id="energiatotal" name="energiatotal" class="form-control" placeholder="Ingrese la energía total generada" required>
+            <input type="number" min="0" step="0.01" id="tiempototal" name="tiempototal" class="form-control" placeholder="Ingrese la energía total generada" required>
           </div>
            <div class="form-group">
             <label for="instalacion">Instalación</label>
-            <select class="form-control" id="instalacion" name="instalacion" required>
-                <option value="">Seleccione la Instalación a la que pertenece el equipo:</option>
+            <select class="form-control" id="instalacion" required>
+                <option value="">Seleccione una de sus instalaciones:</option>
                 <?php foreach ($instalacion as $datos): ?>
                 <option value="<?php echo $datos['idinstalacion'] ?>"><?php echo $datos['nombreinstalacion']?></option> 
                 <?php endforeach ?>
@@ -61,37 +61,46 @@
     $(document).ready(function () {
       var base_url = "<?=base_url()?>"; 
         $('#datosTabla').jtable({
-            title: 'Equipo',
+            title: 'Datos generados',
             actions: {
-                listAction: base_url+'equipos/listarEquipos',
+                listAction: base_url+'datos/listarDatos',
                 deleteAction: base_url+'equipos/borrarEquipo'
             },
             fields: {
-                idequipo: {
+                iddato: {
                     title: 'ID',
                     key: true,
-                    width: '10%'
+                    width: '3%'
                 },
-                tipo: {
-                    title: 'Tipo de equipo',
+                fecha: {
+                    title: 'Fecha',
+                    width: '3%'
+                },
+                hora: {
+                    title: 'Hora',
                     width: '20%'
                 },
-                numeroparte: {
-                    title: 'Número de parte',
-                    width: '20%'
+                energiageneradadia: {
+                    title: 'Energía generada al día (KWh)',
+                    width: '35%'
+                },
+                tiempogeneraciondiaria: {
+                    title: 'Tiempo de generación diaria (Hrs:Seg)',
+                    width: '35%'
+                },
+                energiatotal: {
+                    title: 'Energía total (KWh)',
+                    width: '25%'   
+                },
+                 tiempototal: {
+                    title: 'Tiempo total (Hrs)',
+                    width: '35%'   
                 },
                 serie: {
-                    title: 'Serie',
-                    width: '12%'
-                },
-                modelo: {
-                    title: 'Modelo',
-                    width: '12%'
-                },
-                nombreinstalacion: {
-                    title: 'Instalación',
-                    width: '75%'   
+                    title: 'Equipo',
+                    width: '20%'   
                 }
+
             }
         });
           $('#datosTabla').jtable('load');
@@ -116,20 +125,11 @@ $(document).ready(function() {
 });  
 </script>
 <script type="text/javascript">
-$(document).ready(function() {
- $('#instalacion').change(function() {
-   var instalacion = $('#instalacion').val();  
-       $.ajax({
-            type: 'POST',
-            url: 'equipos/listarEquiposAjax',
-            data: instalacion,
-            // Mostramos un mensaje con la respuesta de PHP
-            success: function(data) {
-                $('#equi').html(data);
-                alert(instalacion);
-            }
-        });        
-        return false;
-    });
- });
+$(document).ready(function(){ 
+   $("#instalacion").change(function(evento){
+    var inst = $('#instalacion').val();
+      evento.preventDefault();
+      $("#equi").load("equipos/listarEquiposIdInstalacion", {instalacion: inst});
+   });
+});
 </script>

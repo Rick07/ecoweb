@@ -25,13 +25,46 @@ class Datos extends CI_Controller {
 
     public function excelVista()
     {
-        $id = $this->session->userdata('id');
         $this->load->view('datos/ingresaExcelVista');
     }
 
-    public function nuevosDatos()
+    public function listarDatos()
     {
-        # code...
+        $id = $this->session->userdata('id');
+        $this->load->model('datos_modelo');
+        $datos = $this->datos_modelo->listarDatosIdDist($id);
+        $data = array();
+        
+        foreach($datos as $key)
+                    {
+                        $data[] = $key;
+                    }
+
+        //Return result to jTable
+        $jTableResult = array();
+        $jTableResult['Result'] = "OK";
+        $jTableResult['Records'] = $data;
+        print json_encode($jTableResult);
+
+    }
+
+    public function newData()
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('energiadia', 'Energia generada al dia', 'trim|required');
+        $this->form_validation->set_rules('tiempodiario', 'Tiempo de generacion diaria', 'trim|required');
+        $this->form_validation->set_rules('energiatotal', 'Energia total', 'trim|required');
+        $this->form_validation->set_rules('tiempototal', 'Tiempo total', 'trim|required');
+        $this->form_validation->set_rules('equipo', 'Equipo', 'trim|required');
+        if($this->form_validation->run() == FALSE)
+            {
+               exit();
+            }
+            else
+            {
+                $this->load->model('datos_modelo');
+                $this->datos_modelo->newData();
+            }
     }
 
 	public function importarDatosExcel(){

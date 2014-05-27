@@ -7,7 +7,7 @@ class Login extends CI_Controller {
         parent::__construct();
         $this->load->library('user_agent');
 	
-		if (!$this->agent->is_browser('Chrome') && !$this->agent->is_browser('Firefox') && !$this->agent->is_browser('Safari'))
+		if (!$this->agent->is_browser('Chrome') && !$this->agent->is_browser('Safari') && !$this->agent->is_browser('Opera'))
 				{
 					show_404();
 				}
@@ -19,7 +19,7 @@ class Login extends CI_Controller {
         $this->load->helper(array('form', 'url', 'html'));
 
     	$this->load->library('form_validation');
-        $data['title']="EcoData";
+        $data['title']="EcoWeb";
 
     	$ingresar = $this->input->post('ingresar');
     	if(!$ingresar)
