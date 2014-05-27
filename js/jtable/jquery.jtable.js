@@ -68,10 +68,10 @@ THE SOFTWARE.
                 serverCommunicationError: 'An error occured while communicating to the server.',
                 loadingMessage: 'Loading records...',
                 noDataAvailable: 'No data available!',
-                areYouSure: 'Are you sure?',
+                areYouSure: '¿Estas seguro?',
                 save: 'Save',
                 saving: 'Saving',
-                cancel: 'Cancel',
+                cancel: 'Cancelar',
                 error: 'Error',
                 close: 'Close',
                 cannotLoadOptionsFor: 'Can not load options for field {0}'
@@ -2040,8 +2040,8 @@ THE SOFTWARE.
 
             //Localization
             messages: {
-                deleteConfirmation: 'This record will be deleted. Are you sure?',
-                deleteText: 'Delete',
+                deleteConfirmation: 'Este registro sera borrado. ¿Está seguro?',
+                deleteText: 'Borrar',
                 deleting: 'Deleting',
                 canNotDeletedRecords: 'Can not deleted {0} of {1} records!',
                 deleteProggress: 'Deleted {0} of {1} records, processing...'

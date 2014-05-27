@@ -1,6 +1,6 @@
 <?php
 
-class Data_modelo extends CI_Model {
+class Datos_modelo extends CI_Model {
 
 	function __construct()
     {

@@ -11,7 +11,25 @@ $(document).ready(function(){
   
     $('#equipos').click(function() {  
         $.ajax({  
+            url: 'equipos',  
+            success: function(data) {  
+                $('#seccion').html(data);  
+            }  
+        });  
+    });
+
+    $('#datosmanuales').click(function() {  
+        $.ajax({  
             url: 'datos',  
+            success: function(data) {  
+                $('#seccion').html(data);  
+            }  
+        });  
+    });
+
+    $('#datosimportados').click(function() {  
+        $.ajax({  
+            url: 'datos/excelvista',  
             success: function(data) {  
                 $('#seccion').html(data);  
             }  
@@ -25,6 +43,6 @@ $(document).ready(function(){
                 $('#seccion').html(data);  
             }  
         });  
-    });  
+    });
   
 });
