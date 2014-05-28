@@ -60,10 +60,11 @@ $(document).ready(function() {
 
 //Ǥrafica por hora
 $(document).ready(function() {
-            $("#target").click(function(evento){
+            $("#target2").click(function(evento){
       //elimino el comportamiento por defecto del enlace
       evento.preventDefault();
-      var url = "charts/datosHora";
+      var fecha = "hola";
+      var url = "charts/datosHora"+fecha;
       var options = {
                 chart: {
                     renderTo: 'container2',
