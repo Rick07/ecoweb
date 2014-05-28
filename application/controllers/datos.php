@@ -34,7 +34,18 @@ class Datos extends CI_Controller {
     {
         $id = $this->session->userdata('id');
         $this->load->model('datos_modelo');
-        $datos = $this->datos_modelo->listarDatosIdDist($id);
+        $recordCount = $this->datos_modelo->totalDatosIdDist($id);
+
+        foreach ($recordCount as $key) {
+            $record = $key['record'];
+        }
+
+        $jtSorting = $this->input->get('jtSorting', TRUE);
+        $jtStartIndex = $this->input->get('jtStartIndex', TRUE);
+        $jtPageSize = $this->input->get('jtPageSize', TRUE);
+        
+        $datos = $this->datos_modelo->listarDatosIdDist($id, $jtSorting, $jtStartIndex, $jtPageSize);
+
         $data = array();
         
         foreach($datos as $key)
@@ -45,6 +56,7 @@ class Datos extends CI_Controller {
         //Return result to jTable
         $jTableResult = array();
         $jTableResult['Result'] = "OK";
+        $jTableResult['TotalRecordCount'] = $record;
         $jTableResult['Records'] = $data;
         print json_encode($jTableResult);
 

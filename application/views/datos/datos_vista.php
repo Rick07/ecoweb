@@ -1,4 +1,4 @@
-<div id="datosTabla" style="width: 1050px;"></div>
+<div id="datosTabla" style="width: 1200px;"></div>
 <!-- Button trigger modal -->
 <button class="btn btn-primary btn-info" data-toggle="modal" data-target="#nuevo">Nuevo</button>
 <?php date_default_timezone_set("America/Mexico_City"); ?> 
@@ -62,6 +62,14 @@
       var base_url = "<?=base_url()?>"; 
         $('#datosTabla').jtable({
             title: 'Datos generados',
+            paging: true,
+            pageSize: 5,
+            sorting: true,
+            multiSorting: true,
+            defaultSorting: 'iddato ASC',
+            messages: {
+            pagingInfo: 'Mostrando {0}-{1} de {2} registros',
+            },
             actions: {
                 listAction: base_url+'datos/listarDatos',
                 deleteAction: base_url+'datos/borrarDato'
