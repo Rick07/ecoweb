@@ -19,18 +19,23 @@ class Charts extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('charts/charts_vista');
+        $this->load->model('instalaciones_modelo');
+        $id = $this->session->userdata('id');
+        $data['instalacion'] = $this->instalaciones_modelo->listarInstalacionesIdDist($id);
+		$this->load->view('charts/charts_vista', $data);
 	}
 
-     public function datosDia()
+    public function datosSemana()
     {
-        $result = $this->charts_modelo->getDataDay();
+        $id = $this->session->userdata('id');
+        $result = $this->charts_modelo->getDataWeek($id);
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
 
-    public function datosHora($fecha)
+    public function datosDia($fecha)
     {
-        $result = $this->charts_modelo->getDataHour($fecha);
+        $id = $this->session->userdata('id');
+        $result = $this->charts_modelo->getDataDay($id, $fecha);
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
 

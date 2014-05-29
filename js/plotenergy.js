@@ -1,9 +1,9 @@
 //Ǥrafica por día
 $(document).ready(function() {
-            $("#target").click(function(evento){
+            $("#target1").click(function(evento){
       //elimino el comportamiento por defecto del enlace
       evento.preventDefault();
-      var url = "charts/datosDia";
+      var url = "charts/datosSemana";
       var options = {
                 chart: {
                     renderTo: 'container',
@@ -12,7 +12,7 @@ $(document).ready(function() {
                     marginBottom: 50
                 },
                 title: {
-                    text: 'Gráfica por día',
+                    text: 'Gráfica por de la semana',
                     x: -20 //center
                 },
                 subtitle: {
@@ -64,8 +64,7 @@ $(document).ready(function() {
       //elimino el comportamiento por defecto del enlace
       evento.preventDefault();
       var fecha = $('#fecha').val();
-      alert(fecha);
-      var url = "charts/datosHora/"+fecha;
+      var url = "charts/datosDia/"+fecha;
       var options = {
                 chart: {
                     renderTo: 'container2',
@@ -74,7 +73,7 @@ $(document).ready(function() {
                     marginBottom: 50
                 },
                 title: {
-                    text: 'Gráfica por Hora',
+                    text: 'Gráfica por del día '+fecha,
                     x: -20 //center
                 },
                 subtitle: {

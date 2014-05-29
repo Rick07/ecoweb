@@ -7,8 +7,13 @@ class Charts_modelo extends CI_Model {
 		$this->load->database();
 	}
 
-	function getDataDay()
+	function getDataWeek($id)
     {
+        $query = $this->db->where('distribuidorid', $id);
+        //$query = $this->db->where('equipoid', $equipo);
+        $query = $this->db->join('equipo', 'datos.equipoid = equipo.idequipo');
+        $query = $this->db->join('instalacion', 'equipo.instalacionid = instalacion.idinstalacion');
+        $query = $this->db->join('distribuidor', 'instalacion.distribuidorid = distribuidor.iddistribuidor');
 		$query = $this->db->get('datos');
        	$data = $query->result();
 
@@ -31,9 +36,14 @@ class Charts_modelo extends CI_Model {
         return $result;
     }
 
-    function getDataHour($fecha)
+    function getDataDay($id, $fecha)
     {
+        $query = $this->db->select("DATE_FORMAT(hora, ('%H:%i %p')) AS hora, energiageneradadia, fecha");
         $query = $this->db->where('fecha', $fecha);
+        $query = $this->db->where('distribuidorid', $id);
+        $query = $this->db->join('equipo', 'datos.equipoid = equipo.idequipo');
+        $query = $this->db->join('instalacion', 'equipo.instalacionid = instalacion.idinstalacion');
+        $query = $this->db->join('distribuidor', 'instalacion.distribuidorid = distribuidor.iddistribuidor');
         $query = $this->db->get('datos');
         $data = $query->result();
 
