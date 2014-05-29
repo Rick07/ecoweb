@@ -63,8 +63,9 @@ $(document).ready(function() {
             $("#target2").click(function(evento){
       //elimino el comportamiento por defecto del enlace
       evento.preventDefault();
-      var fecha = "hola";
-      var url = "charts/datosHora"+fecha;
+      var fecha = $('#fecha').val();
+      alert(fecha);
+      var url = "charts/datosHora/"+fecha;
       var options = {
                 chart: {
                     renderTo: 'container2',

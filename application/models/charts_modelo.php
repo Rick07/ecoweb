@@ -31,8 +31,9 @@ class Charts_modelo extends CI_Model {
         return $result;
     }
 
-    function getDataHour()
+    function getDataHour($fecha)
     {
+        $query = $this->db->where('fecha', $fecha);
         $query = $this->db->get('datos');
         $data = $query->result();
 

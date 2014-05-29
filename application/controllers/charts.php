@@ -28,9 +28,9 @@ class Charts extends CI_Controller {
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
 
-    public function datosHora()
+    public function datosHora($fecha)
     {
-        $result = $this->charts_modelo->getDataHour();
+        $result = $this->charts_modelo->getDataHour($fecha);
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
 
