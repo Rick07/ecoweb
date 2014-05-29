@@ -1,9 +1,9 @@
         <button id="target1" class="btn btn-success">MOSTRAR GRÁFICA</button>
-            <label for="instalacion">Instalación</label>
-            <select  id="instalacion" required>
-                <option value="">Seleccione una de sus instalaciones:</option>
-                <?php foreach ($instalacion as $datos): ?>
-                <option value="<?php echo $datos['idinstalacion'] ?>"><?php echo $datos['nombreinstalacion']?></option> 
+            <label  for="equipo">Equipo</label>
+            <select  id="equipo" name="equipo" required>
+                <option value="">Seleccione el equipo al que pertenecen los datos generados:</option>
+                <?php foreach ($equipo as $datos): ?>
+                <option value="<?php echo $datos['idequipo'] ?>"><?php echo $datos['modelo']?></option> 
                 <?php endforeach ?>
             </select>
             <div id="equi"></div>
@@ -18,12 +18,3 @@
         <script src="<?php echo base_url()?>js/highcharts.js"></script>
         <script src="<?php echo base_url()?>js/modules/exporting.js"></script>
         <script type="text/javascript">
-$(document).ready(function(){ 
-   $("#instalacion").change(function(evento){
-    var inst = $('#instalacion').val();
-      evento.preventDefault();
-      $("#equi").load("equipos/listarEquiposIdInstalacion", {instalacion: inst});
-   });
-});
-</script>
-    

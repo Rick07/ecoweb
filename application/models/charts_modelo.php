@@ -10,7 +10,7 @@ class Charts_modelo extends CI_Model {
 	public function getDataWeek($id, $equipo)
     {
         $sql = "SELECT
-                datos.fecha AS fecha,
+                DATE_FORMAT(datos.fecha, '%d/%M/%Y') AS fecha,
                 Sum(datos.energiageneradadia) AS energiageneradadia
                 FROM
                 datos

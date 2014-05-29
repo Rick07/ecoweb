@@ -19,9 +19,9 @@ class Charts extends CI_Controller {
 
 	public function index()
 	{
-        $this->load->model('instalaciones_modelo');
+        $this->load->model('equipos_modelo');
         $id = $this->session->userdata('id');
-        $data['instalacion'] = $this->instalaciones_modelo->listarInstalacionesIdDist($id);
+        $data['equipo'] = $this->equipos_modelo->listarEquiposIdDist($id);
 		$this->load->view('charts/charts_vista', $data);
 	}
 

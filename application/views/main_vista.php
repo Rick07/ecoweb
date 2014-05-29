@@ -7,8 +7,8 @@
     <link href="<?php echo base_url()?>bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="<?php echo base_url()?>css/blitzer/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
     <!-- Jquery -->
-    <script src="<?php echo base_url()?>js/jquery-1.8.2.min.js"></script>
-    <script src="<?php echo base_url()?>js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="<?php echo base_url()?>js/jquery-1.10.2.js"></script>
+   
     <script type="text/javascript" src="<?php echo base_url()?>js/navtabs.js"></script>
     <!-- Include one of jTable styles. -->
     <link href="<?php echo base_url()?>js/jtable/themes/lightcolor/blue/jtable.min.css" rel="stylesheet" type="text/css" />
