@@ -3,7 +3,8 @@ $(document).ready(function() {
             $("#target1").click(function(evento){
       //elimino el comportamiento por defecto del enlace
       evento.preventDefault();
-      var url = "charts/datosSemana";
+      var equipo = $('#equipo').val();
+      var url = "charts/datosSemana/"+equipo;
       var options = {
                 chart: {
                     renderTo: 'container',

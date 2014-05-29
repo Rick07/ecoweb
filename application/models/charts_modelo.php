@@ -7,14 +7,23 @@ class Charts_modelo extends CI_Model {
 		$this->load->database();
 	}
 
-	function getDataWeek($id)
+	public function getDataWeek($id, $equipo)
     {
-        $query = $this->db->where('distribuidorid', $id);
-        //$query = $this->db->where('equipoid', $equipo);
-        $query = $this->db->join('equipo', 'datos.equipoid = equipo.idequipo');
-        $query = $this->db->join('instalacion', 'equipo.instalacionid = instalacion.idinstalacion');
-        $query = $this->db->join('distribuidor', 'instalacion.distribuidorid = distribuidor.iddistribuidor');
-		$query = $this->db->get('datos');
+        $sql = "SELECT
+                datos.fecha AS fecha,
+                Sum(datos.energiageneradadia) AS energiageneradadia
+                FROM
+                datos
+                INNER JOIN equipo ON datos.equipoid = equipo.idequipo
+                INNER JOIN instalacion ON equipo.instalacionid = instalacion.idinstalacion
+                INNER JOIN distribuidor ON instalacion.distribuidorid = distribuidor.iddistribuidor
+                WHERE
+                instalacion.distribuidorid = $id AND
+                datos.equipoid = $equipo AND
+                YEARweek(fecha) = YEARweek(CURRENT_date)
+                GROUP BY
+                datos.fecha";
+        $query = $this->db->query($sql);
        	$data = $query->result();
 
        	$category = array();
@@ -36,7 +45,7 @@ class Charts_modelo extends CI_Model {
         return $result;
     }
 
-    function getDataDay($id, $fecha)
+    public function getDataDay($id, $fecha)
     {
         $query = $this->db->select("DATE_FORMAT(hora, ('%H:%i %p')) AS hora, energiageneradadia, fecha");
         $query = $this->db->where('fecha', $fecha);

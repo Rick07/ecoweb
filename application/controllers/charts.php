@@ -25,10 +25,10 @@ class Charts extends CI_Controller {
 		$this->load->view('charts/charts_vista', $data);
 	}
 
-    public function datosSemana()
+    public function datosSemana($equipo)
     {
         $id = $this->session->userdata('id');
-        $result = $this->charts_modelo->getDataWeek($id);
+        $result = $this->charts_modelo->getDataWeek($id, $equipo);
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
 
