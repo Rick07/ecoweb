@@ -1,10 +1,12 @@
-//Ǥrafica por día
+//Ǥrafica por semana, mes y año
 $(document).ready(function() {
             $("#target1").click(function(evento){
       //elimino el comportamiento por defecto del enlace
       evento.preventDefault();
       var equipo = $('#equipo').val();
-      var url = "charts/datosSemana/"+equipo;
+      var filtro = $('#filtro').val();
+      var url = "charts/getData/"+equipo+"/"+filtro;
+      if(filtro == 'Year'){ filtro  = 'Año'; }
       var options = {
                 chart: {
                     renderTo: 'container',
@@ -13,7 +15,7 @@ $(document).ready(function() {
                     marginBottom: 50
                 },
                 title: {
-                    text: 'Gráfica por de la semana',
+                    text: 'Gráfica por '+filtro,
                     x: -20 //center
                 },
                 subtitle: {
@@ -74,7 +76,7 @@ $(document).ready(function() {
                     marginBottom: 50
                 },
                 title: {
-                    text: 'Gráfica por del día '+fecha,
+                    text: 'Gráfica por hora del día '+fecha,
                     x: -20 //center
                 },
                 subtitle: {

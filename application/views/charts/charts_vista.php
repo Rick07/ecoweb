@@ -6,6 +6,13 @@
                 <option value="<?php echo $datos['idequipo'] ?>"><?php echo $datos['modelo']?></option> 
                 <?php endforeach ?>
             </select>
+            <label  for="filtro">Filtro</label>
+            <select  id="filtro" name="filtro" required>
+                <option value="">Ver grafica por:</option>
+                <option value="Semana">Semana</option>
+                <option value="Mes">Mes</option>
+                <option value="Year">Año</option> 
+            </select>
             <div id="equi"></div>
         <button id="target2" class="btn btn-success">MOSTRAR GRÁFICA</button>
         <label for="date">Eliga una fecha</label> 

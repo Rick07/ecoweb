@@ -25,10 +25,23 @@ class Charts extends CI_Controller {
 		$this->load->view('charts/charts_vista', $data);
 	}
 
-    public function datosSemana($equipo)
+    public function getData($equipo, $filtro)
     {
         $id = $this->session->userdata('id');
-        $result = $this->charts_modelo->getDataWeek($id, $equipo);
+
+        if ($filtro == "Semana") 
+        {
+           $result = $this->charts_modelo->getDataWeek($id, $equipo);
+        }
+        else if ($filtro == "Mes") 
+        {
+           $result = $this->charts_modelo->getDataMonth($id, $equipo);
+        }
+        else if ($filtro == "Year") 
+        {
+           $result = $this->charts_modelo->getDataYear($id, $equipo);
+        }
+        
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
 
