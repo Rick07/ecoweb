@@ -68,7 +68,21 @@
             multiSorting: true,
             defaultSorting: 'iddato ASC',
             messages: {
+            noDataAvailable: 'No hay informacion disponible',
+            areYouSure: '¿Estas seguro?',
+            deleteConfirmation: 'Este registro sera borrrado. ¿Está seguro?',
+            save: 'Guardar',
+            saving: 'Guardando',
+            cancel: 'Cancelar',
+            deleteText: 'Borrar',
+            deleting: 'Borrando',
+            error: 'Error',
+            close: 'Cerrar',
             pagingInfo: 'Mostrando {0}-{1} de {2} registros',
+            pageSizeChangeLabel: 'Numero de filas en la tabla',
+            gotoPageLabel: 'Ir a la pagina:',
+            canNotDeletedRecords: 'No se pueden borrar {0} de {1} registros',
+            deleteProggress: 'Borrados {0} de {1} registros, procesando...'
             },
             actions: {
                 listAction: base_url+'datos/listarDatos',

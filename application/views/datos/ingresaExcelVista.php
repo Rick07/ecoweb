@@ -16,7 +16,7 @@
         <input  type="file" name="file"  required>
         </div>
         <div class="form-group">
-        <input type="submit" name="submit" id="Upload" value="Upload" class="btn btn-primary">
+        <input type="submit" name="submit" id="Upload" value="Subir Archivo" class="btn btn-primary">
         </div>
         <?=form_close()?>
         </div>
