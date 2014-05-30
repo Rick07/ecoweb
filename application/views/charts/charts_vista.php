@@ -1,4 +1,5 @@
-        <button id="target1" class="btn btn-success">MOSTRAR GRÁFICA</button>
+        <div class="row">
+            <div class="col-md-6">
             <label  for="equipo">Equipo</label>
             <select  id="equipo" name="equipo" required>
                 <option value="">Seleccione el equipo al que pertenecen los datos generados:</option>
@@ -13,10 +14,15 @@
                 <option value="Mes">Mes</option>
                 <option value="Year">Año</option> 
             </select>
-            <div id="equi"></div>
-        <button id="target2" class="btn btn-success">MOSTRAR GRÁFICA</button>
-        <label for="date">Eliga una fecha</label> 
-        <input type="date" id="fecha" name="fecha" >
+            </div>
+            <div class="col-md-6"><label for="date">Eliga una fecha</label> 
+             <input type="date" id="fecha" name="fecha" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><button id="target1" class="btn btn-success">MOSTRAR GRÁFICA</button></div>
+            <div class="col-md-6"><button id="target2" class="btn btn-success">MOSTRAR GRÁFICA</button></div>
+        </div>
         <div class="row">
         <div id="container" class="col-md-6" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         <div id="container2" class="col-md-6" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
