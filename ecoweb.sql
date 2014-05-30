@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 27-05-2014 a las 23:59:21
+-- Tiempo de generación: 30-05-2014 a las 23:47:35
 -- Versión del servidor: 5.5.16
 -- Versión de PHP: 5.3.8
 
@@ -38,19 +38,23 @@ CREATE TABLE IF NOT EXISTS `datos` (
   `equipoid` int(5) NOT NULL,
   PRIMARY KEY (`iddato`),
   KEY `equipoid` (`equipoid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=189 ;
 
 --
 -- Volcado de datos para la tabla `datos`
 --
 
 INSERT INTO `datos` (`iddato`, `fecha`, `hora`, `energiageneradadia`, `tiempogeneraciondiaria`, `energiatotal`, `tiempototal`, `equipoid`) VALUES
-(6, '2014-05-27', '15:45:28', 0.04, '05:03:00', 2, 0.03, 7),
-(7, '2014-02-02', '09:29:00', 1.4, '02:18:00', 5978, 2258.2, 6),
-(8, '2014-02-02', '10:31:00', 4.3, '03:21:00', 5981, 2259.3, 6),
-(9, '2014-02-02', '11:24:00', 6.8, '04:14:00', 5984, 2260.2, 6),
-(10, '2014-02-02', '12:23:00', 10.9, '05:13:00', 5988, 2261.2, 6),
-(11, '2014-02-02', '13:32:00', 15.4, '06:22:00', 5993, 2262.3, 6);
+(172, '2013-05-29', '08:43:27', 12.9, '14:10:00', 25, 3234, 8),
+(173, '2014-05-29', '09:29:00', 1.4, '02:18:00', 5978, 2258.2, 8),
+(174, '2014-05-29', '10:31:00', 4.3, '03:21:00', 5981, 2259.3, 8),
+(175, '2014-05-28', '11:24:00', 6.8, '04:14:00', 5984, 2260.2, 8),
+(176, '2014-05-28', '12:23:00', 10.9, '05:13:00', 5988, 2261.2, 8),
+(177, '2014-02-02', '13:32:00', 15.4, '06:22:00', 5993, 2262.3, 8),
+(178, '2014-02-02', '09:29:00', 1.4, '02:18:00', 5978, 2258.2, 8),
+(186, '2014-02-02', '12:23:00', 10.9, '05:13:00', 5988, 2261.2, 8),
+(187, '2014-02-02', '13:32:00', 15.4, '06:22:00', 5993, 2262.3, 8),
+(188, '2014-05-28', '13:11:02', 0.18, '07:05:00', 5, 0.2, 7);
 
 -- --------------------------------------------------------
 
@@ -96,16 +100,16 @@ CREATE TABLE IF NOT EXISTS `equipo` (
   `instalacionid` int(4) NOT NULL,
   PRIMARY KEY (`idequipo`),
   KEY `instalacionid` (`instalacionid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Volcado de datos para la tabla `equipo`
 --
 
 INSERT INTO `equipo` (`idequipo`, `tipo`, `numeroparte`, `serie`, `modelo`, `instalacionid`) VALUES
-(4, 'Inversor', 123, '1208M', 'TK-42', 129),
 (6, 'MicroInversor', 456, 'TYU8J', 'SKY-9', 128),
-(7, 'MicroInversor', 12345, 'ER56T', 'HP', 126);
+(7, 'MicroInversor', 12345, 'ER56T', 'HP', 126),
+(8, 'Inversor', 2334, '32DSF', 'po-09', 130);
 
 -- --------------------------------------------------------
 
@@ -126,17 +130,17 @@ CREATE TABLE IF NOT EXISTS `instalacion` (
   PRIMARY KEY (`idinstalacion`,`codigoestado`),
   KEY `codigoestado` (`codigoestado`),
   KEY `distribuidorid` (`distribuidorid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=130 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=131 ;
 
 --
 -- Volcado de datos para la tabla `instalacion`
 --
 
 INSERT INTO `instalacion` (`idinstalacion`, `tiposistema`, `categoria`, `tipocompra`, `direccion`, `nombreinstalacion`, `codigoestado`, `distribuidorid`) VALUES
-(1, 'PV5', 'Bifasico', 'Arrendamiento', 'Calle Falsa #0', 'Teserato', 'PU', 1),
 (126, 'PV', 'ASD', 'Directa', 'AS', 'Instalacion 333', 'MC', 2),
 (128, 'PV2', 'Trifásico', 'Arrendamiento', 'Tecalo 878', 'Instalacion 777', 'NA', 1),
-(129, 'PV2', 'Trifásico', 'Directa', 'Momoxpan', 'Instalacion 501', 'NL', 1);
+(129, 'PV2', 'Trifásico', 'Directa', 'Momoxpan', 'Instalacion 501', 'NL', 1),
+(130, 'PV2', 'Bifásico', 'Directa', 'avenida falsa #0', 'INSTALACION 00', 'OA', 1);
 
 -- --------------------------------------------------------
 
