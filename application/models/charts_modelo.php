@@ -123,9 +123,10 @@ class Charts_modelo extends CI_Model {
         return $result;
     }
 
-    public function getDataDay($id, $fecha)
+    public function getDataDay($id, $equipo, $fecha)
     {
         $query = $this->db->select("DATE_FORMAT(hora, ('%H:%i %p')) AS hora, energiageneradadia, fecha");
+        $query = $this->db->where('equipoid', $equipo);
         $query = $this->db->where('fecha', $fecha);
         $query = $this->db->where('distribuidorid', $id);
         $query = $this->db->join('equipo', 'datos.equipoid = equipo.idequipo');

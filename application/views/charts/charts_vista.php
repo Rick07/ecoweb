@@ -29,5 +29,6 @@
         </div>
         <script type="text/javascript" src="<?php echo base_url()?>js/plotenergy.js"></script>
         <script src="<?php echo base_url()?>js/highcharts.js"></script>
+        <!--<script src="<?php echo base_url()?>js/themes/sand-signika.js"></script>-->
         <script src="<?php echo base_url()?>js/modules/exporting.js"></script>
         <script type="text/javascript">

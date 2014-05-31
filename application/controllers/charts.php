@@ -45,10 +45,10 @@ class Charts extends CI_Controller {
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
 
-    public function datosDia($fecha)
+    public function datosDia($equipo, $fecha)
     {
         $id = $this->session->userdata('id');
-        $result = $this->charts_modelo->getDataDay($id, $fecha);
+        $result = $this->charts_modelo->getDataDay($id, $equipo, $fecha);
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
 

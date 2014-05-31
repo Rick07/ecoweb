@@ -66,8 +66,9 @@ $(document).ready(function() {
             $("#target2").click(function(evento){
       //elimino el comportamiento por defecto del enlace
       evento.preventDefault();
+      var equipo = $('#equipo').val();
       var fecha = $('#fecha').val();
-      var url = "charts/datosDia/"+fecha;
+      var url = "charts/datosDia/"+equipo+"/"+fecha;
       var options = {
                 chart: {
                     renderTo: 'container2',
