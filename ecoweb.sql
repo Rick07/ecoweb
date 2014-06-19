@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 30-05-2014 a las 23:47:35
+-- Tiempo de generación: 19-06-2014 a las 21:02:38
 -- Versión del servidor: 5.5.16
 -- Versión de PHP: 5.3.8
 
@@ -19,6 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ecoweb`
 --
+DROP DATABASE `ecoweb`;
+CREATE DATABASE `ecoweb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `ecoweb`;
 
 -- --------------------------------------------------------
 
@@ -38,23 +41,18 @@ CREATE TABLE IF NOT EXISTS `datos` (
   `equipoid` int(5) NOT NULL,
   PRIMARY KEY (`iddato`),
   KEY `equipoid` (`equipoid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=189 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
 
 --
 -- Volcado de datos para la tabla `datos`
 --
 
 INSERT INTO `datos` (`iddato`, `fecha`, `hora`, `energiageneradadia`, `tiempogeneraciondiaria`, `energiatotal`, `tiempototal`, `equipoid`) VALUES
-(172, '2013-05-29', '08:43:27', 12.9, '14:10:00', 25, 3234, 8),
-(173, '2014-05-29', '09:29:00', 1.4, '02:18:00', 5978, 2258.2, 8),
-(174, '2014-05-29', '10:31:00', 4.3, '03:21:00', 5981, 2259.3, 8),
-(175, '2014-05-28', '11:24:00', 6.8, '04:14:00', 5984, 2260.2, 8),
-(176, '2014-05-28', '12:23:00', 10.9, '05:13:00', 5988, 2261.2, 8),
-(177, '2014-02-02', '13:32:00', 15.4, '06:22:00', 5993, 2262.3, 8),
-(178, '2014-02-02', '09:29:00', 1.4, '02:18:00', 5978, 2258.2, 8),
-(186, '2014-02-02', '12:23:00', 10.9, '05:13:00', 5988, 2261.2, 8),
-(187, '2014-02-02', '13:32:00', 15.4, '06:22:00', 5993, 2262.3, 8),
-(188, '2014-05-28', '13:11:02', 0.18, '07:05:00', 5, 0.2, 7);
+(50, '2003-06-14', '09:23:00', 0.3, '01:12:00', 5977, 2257.1, 9),
+(51, '2002-02-14', '09:29:00', 1.4, '02:18:00', 5978, 2258.2, 9),
+(52, '2002-02-14', '10:31:00', 4.3, '03:21:00', 5981, 2259.3, 9),
+(53, '2002-02-14', '11:24:00', 6.8, '04:14:00', 5984, 2260.2, 9),
+(54, '2002-02-14', '12:23:00', 10.9, '05:13:00', 5988, 2261.2, 9);
 
 -- --------------------------------------------------------
 
@@ -94,22 +92,21 @@ DROP TABLE IF EXISTS `equipo`;
 CREATE TABLE IF NOT EXISTS `equipo` (
   `idequipo` int(5) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(15) NOT NULL,
-  `numeroparte` int(5) DEFAULT NULL,
-  `serie` varchar(5) NOT NULL,
-  `modelo` varchar(5) NOT NULL,
+  `numeroparte` int(20) DEFAULT NULL,
+  `serie` varchar(20) NOT NULL,
+  `modelo` varchar(20) NOT NULL,
   `instalacionid` int(4) NOT NULL,
   PRIMARY KEY (`idequipo`),
   KEY `instalacionid` (`instalacionid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `equipo`
 --
 
 INSERT INTO `equipo` (`idequipo`, `tipo`, `numeroparte`, `serie`, `modelo`, `instalacionid`) VALUES
-(6, 'MicroInversor', 456, 'TYU8J', 'SKY-9', 128),
-(7, 'MicroInversor', 12345, 'ER56T', 'HP', 126),
-(8, 'Inversor', 2334, '32DSF', 'po-09', 130);
+(9, 'Inversor', 123, 'asd12', 'asda', 131),
+(10, 'Inversor', 21, '213', 'sad', 131);
 
 -- --------------------------------------------------------
 
@@ -123,24 +120,23 @@ CREATE TABLE IF NOT EXISTS `instalacion` (
   `tiposistema` varchar(3) NOT NULL,
   `categoria` varchar(10) NOT NULL,
   `tipocompra` varchar(15) NOT NULL,
-  `direccion` varchar(30) NOT NULL,
-  `nombreinstalacion` varchar(20) NOT NULL,
+  `direccion` varchar(40) NOT NULL,
+  `nombreinstalacion` varchar(30) NOT NULL,
   `codigoestado` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `distribuidorid` int(3) NOT NULL,
   PRIMARY KEY (`idinstalacion`,`codigoestado`),
   KEY `codigoestado` (`codigoestado`),
   KEY `distribuidorid` (`distribuidorid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=131 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=134 ;
 
 --
 -- Volcado de datos para la tabla `instalacion`
 --
 
 INSERT INTO `instalacion` (`idinstalacion`, `tiposistema`, `categoria`, `tipocompra`, `direccion`, `nombreinstalacion`, `codigoestado`, `distribuidorid`) VALUES
-(126, 'PV', 'ASD', 'Directa', 'AS', 'Instalacion 333', 'MC', 2),
-(128, 'PV2', 'Trifásico', 'Arrendamiento', 'Tecalo 878', 'Instalacion 777', 'NA', 1),
-(129, 'PV2', 'Trifásico', 'Directa', 'Momoxpan', 'Instalacion 501', 'NL', 1),
-(130, 'PV2', 'Bifásico', 'Directa', 'avenida falsa #0', 'INSTALACION 00', 'OA', 1);
+(131, 'PV0', 'Bifásico', 'Directa', 'asdas', 'ada', 'MC', 1),
+(132, 'PV1', 'Bifásico', 'Arrendamiento', 'sadsa', 'sadas', 'NA', 1),
+(133, 'PV0', 'Bifásico', 'Directa', '31 pte', 'ASIATECH CASA', 'PU', 1);
 
 -- --------------------------------------------------------
 

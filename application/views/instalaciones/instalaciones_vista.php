@@ -19,6 +19,7 @@
             <label for="tipoSistema">Tipo de sistema</label>
             <select class="form-control" id="tipoSistema" name="tipoSistema" required>
                 <option value="">Seleccione el tipo de sistema:</option>
+                <option>PV00</option>
                 <option>PV0</option>
                 <option>PV1</option>
                 <option>PV2</option>
@@ -144,6 +145,7 @@ $(document).ready(function() {
             // Mostramos un mensaje con la respuesta de PHP
             success: function(data) {
                 alert("DATOS REGISTRADOS");
+                $("#nuevaInstalacion")[0].reset();
             }
         })        
         return false;

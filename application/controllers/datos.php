@@ -97,6 +97,7 @@ class Datos extends CI_Controller {
     	//Cargar PHPExcel library
         $this->load->library('Excel');
         $idequipo = $this->input->post('equipo');
+        $url = base_url().'main';
  
     	$name   = $_FILES['file']['name'];
      	$tname  = $_FILES['file']['tmp_name'];
@@ -124,7 +125,7 @@ class Datos extends CI_Controller {
         echo "<script language='JavaScript'>
              {
                alert('Datos importados correctamente');  
-               setTimeout(location.href='http://localhost/ecoweb/main', 2000);}
+               setTimeout(location.href='$url', 2000);}
                 </script>";     	
             } 
        	}

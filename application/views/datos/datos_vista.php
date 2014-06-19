@@ -14,19 +14,23 @@
         <?php echo validation_errors(); 
          $atr = array('id' => 'nuevosDat', 'autocomplete' => 'off'); 
         echo form_open('datos/newData', $atr); ?>
-        <input type="hidden" name="fecha" value="<?php echo date('Y-m-d');?>">
-        <input type="hidden" name="hora" value="<?php echo date('H:i:s'); ?> ">
-         <div class="form-group">
-            <label for="fechahora">Fecha y Hora</label>
-            <input type="text"  id="fechahora" value="<?php echo date('d-m-Y - h:i A'); ?>" class="form-control" readonly>
+        <!--<input type="hidden" name="fecha" value="<?php //echo date('Y-m-d');?>">-->
+        <!--<input type="hidden" name="hora" value="<?php //echo date('H:i:s'); ?> ">-->
+        <div class="form-group">
+            <label for="hour">Fecha</label>
+            <input id="hour" type="date"  name="fecha"  class="form-control" required>
+            </div>
+          <div class="form-group">
+            <label for="time">Hora</label>
+            <input id="time" type="time"  name="hora"  class="form-control" required>
           </div>
           <div class="form-group">
             <label for="energiadia">Energía generada al día (KWh)</label>
             <input type="number" step="0.01"  min="0" id="energiadia" name="energiadia" class="form-control" placeholder="Ingrese la energía generada al día" required>
           </div>
           <div class="form-group">
-            <label for="tiempodiario">Tiempo de generación diaria</label>
-            <input type="time" id="tiempodiario"  name="tiempodiario" class="form-control" required>
+           <label for="tiempodiario">Tiempo de generación diaria (Horas:minutos)</label>
+            <input type="text" id="tiempodiario" name="tiempodiario" class="form-control" required pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" />
           </div>
           <div class="form-group">
             <label for="energiatotal">Energía total (KWh)</label>
@@ -48,7 +52,7 @@
           <div id="equi" class="form-group">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            <button id="cerrar" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
             <input type="submit" class="btn btn-primary" value="Guardar">
           </div>
         </form>
@@ -140,6 +144,7 @@ $(document).ready(function() {
             // Mostramos un mensaje con la respuesta de PHP
             success: function(data) {
                 alert("DATOS REGISTRADOS");
+                $("#nuevosDat")[0].reset();
             }
         })        
         return false;
