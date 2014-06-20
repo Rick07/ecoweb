@@ -103,13 +103,13 @@ class Datos extends CI_Controller {
      	$tname  = $_FILES['file']['tmp_name'];
  
         $obj_excel = PHPExcel_IOFactory::load($tname);       
-       	$sheetData = $obj_excel->getActiveSheet()->toArray(true,true,true,true,true,true);
+       	$sheetData = $obj_excel->getActiveSheet()->toArray(true,true,true,true,true);
  
        	$arr_datos = array();
        	foreach ($sheetData as $index => $value) {            
             if ( $index != 1 ){
                 $arr_datos = array(
-                    'fecha'  =>  (string)$value['A'],
+                    'fecha'  =>  $value['A'],
                     'hora' =>  (string)$value['B'],
                     'energiageneradadia'  =>  (double)$value['C'],                                        
                     'tiempogeneraciondiaria'  =>  (string)$value['D'],
