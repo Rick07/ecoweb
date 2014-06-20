@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-06-2014 a las 21:02:38
+-- Tiempo de generación: 20-06-2014 a las 18:15:15
 -- Versión del servidor: 5.5.16
 -- Versión de PHP: 5.3.8
 
@@ -19,9 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ecoweb`
 --
-DROP DATABASE `ecoweb`;
-CREATE DATABASE `ecoweb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `ecoweb`;
 
 -- --------------------------------------------------------
 
@@ -41,18 +38,12 @@ CREATE TABLE IF NOT EXISTS `datos` (
   `equipoid` int(5) NOT NULL,
   PRIMARY KEY (`iddato`),
   KEY `equipoid` (`equipoid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `datos`
 --
 
-INSERT INTO `datos` (`iddato`, `fecha`, `hora`, `energiageneradadia`, `tiempogeneraciondiaria`, `energiatotal`, `tiempototal`, `equipoid`) VALUES
-(50, '2003-06-14', '09:23:00', 0.3, '01:12:00', 5977, 2257.1, 9),
-(51, '2002-02-14', '09:29:00', 1.4, '02:18:00', 5978, 2258.2, 9),
-(52, '2002-02-14', '10:31:00', 4.3, '03:21:00', 5981, 2259.3, 9),
-(53, '2002-02-14', '11:24:00', 6.8, '04:14:00', 5984, 2260.2, 9),
-(54, '2002-02-14', '12:23:00', 10.9, '05:13:00', 5988, 2261.2, 9);
 
 -- --------------------------------------------------------
 
@@ -72,15 +63,14 @@ CREATE TABLE IF NOT EXISTS `distribuidor` (
   `zona` varchar(8) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`iddistribuidor`),
   KEY `zona` (`zona`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Volcado de datos para la tabla `distribuidor`
 --
 
 INSERT INTO `distribuidor` (`iddistribuidor`, `nombre`, `nick`, `password`, `direccion`, `telefono`, `empresa`, `zona`) VALUES
-(1, 'Ricardo Sánchez', 'rik', '8c0c495a436a206fe36c7ec2fe094658', 'avenida tecali', '7561231', 'asiatech', 'PU'),
-(2, 'Distribuidor 2', 'dist', '202cb962ac59075b964b07152d234b70', 'asdasd', '123123', 'sadsa', 'CM');
+(1, 'Ricardo Sánchez', 'rik', '8c0c495a436a206fe36c7ec2fe094658', 'avenida tecali', '7561231', 'asiatech', 'PU');
 
 -- --------------------------------------------------------
 
@@ -98,15 +88,7 @@ CREATE TABLE IF NOT EXISTS `equipo` (
   `instalacionid` int(4) NOT NULL,
   PRIMARY KEY (`idequipo`),
   KEY `instalacionid` (`instalacionid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
-
---
--- Volcado de datos para la tabla `equipo`
---
-
-INSERT INTO `equipo` (`idequipo`, `tipo`, `numeroparte`, `serie`, `modelo`, `instalacionid`) VALUES
-(9, 'Inversor', 123, 'asd12', 'asda', 131),
-(10, 'Inversor', 21, '213', 'sad', 131);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -127,16 +109,8 @@ CREATE TABLE IF NOT EXISTS `instalacion` (
   PRIMARY KEY (`idinstalacion`,`codigoestado`),
   KEY `codigoestado` (`codigoestado`),
   KEY `distribuidorid` (`distribuidorid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=134 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `instalacion`
---
-
-INSERT INTO `instalacion` (`idinstalacion`, `tiposistema`, `categoria`, `tipocompra`, `direccion`, `nombreinstalacion`, `codigoestado`, `distribuidorid`) VALUES
-(131, 'PV0', 'Bifásico', 'Directa', 'asdas', 'ada', 'MC', 1),
-(132, 'PV1', 'Bifásico', 'Arrendamiento', 'sadsa', 'sadas', 'NA', 1),
-(133, 'PV0', 'Bifásico', 'Directa', '31 pte', 'ASIATECH CASA', 'PU', 1);
 
 -- --------------------------------------------------------
 
@@ -198,25 +172,25 @@ INSERT INTO `state` (`sName`, `sCode`) VALUES
 -- Filtros para la tabla `datos`
 --
 ALTER TABLE `datos`
-  ADD CONSTRAINT `datos_ibfk_1` FOREIGN KEY (`equipoid`) REFERENCES `equipo` (`idequipo`);
+  ADD CONSTRAINT `datos_ibfk_1` FOREIGN KEY (`equipoid`) REFERENCES `equipo` (`idequipo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `distribuidor`
 --
 ALTER TABLE `distribuidor`
-  ADD CONSTRAINT `distribuidor_ibfk_1` FOREIGN KEY (`zona`) REFERENCES `state` (`sCode`);
+  ADD CONSTRAINT `distribuidor_ibfk_1` FOREIGN KEY (`zona`) REFERENCES `state` (`sCode`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `equipo`
 --
 ALTER TABLE `equipo`
-  ADD CONSTRAINT `equipo_ibfk_1` FOREIGN KEY (`instalacionid`) REFERENCES `instalacion` (`idinstalacion`);
+  ADD CONSTRAINT `equipo_ibfk_1` FOREIGN KEY (`instalacionid`) REFERENCES `instalacion` (`idinstalacion`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `instalacion`
 --
 ALTER TABLE `instalacion`
-  ADD CONSTRAINT `fk_instalacion_state1` FOREIGN KEY (`codigoestado`) REFERENCES `state` (`sCode`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_instalacion_state1` FOREIGN KEY (`codigoestado`) REFERENCES `state` (`sCode`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `instalacion_ibfk_1` FOREIGN KEY (`distribuidorid`) REFERENCES `distribuidor` (`iddistribuidor`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

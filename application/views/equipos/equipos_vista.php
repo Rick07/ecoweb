@@ -76,8 +76,8 @@
             deleteProggress: 'Borrados {0} de {1} registros, procesando...'
             },
             actions: {
-                listAction: base_url+'equipos/listarEquipos',
-                deleteAction: base_url+'equipos/borrarEquipo'
+                listAction: base_url+'index.php/equipos/listarEquipos',
+                deleteAction: base_url+'index.php/equipos/borrarEquipo'
             },
             fields: {
                 idequipo: {

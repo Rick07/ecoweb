@@ -21,7 +21,7 @@
     <div class="col-md-3 col-md-offset-9">
         <ul class="nav nav-pills nav-stacked">
           <li class="active">
-            <a href="<?php echo base_url()?>main/salir">
+            <a href="<?php echo base_url()?>index.php/main/salir">
               <span class="badge pull-right">Cerrar Sesión</span>
               <?php echo $nombre?>
             </a>

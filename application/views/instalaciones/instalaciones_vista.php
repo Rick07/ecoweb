@@ -95,8 +95,8 @@
             deleteProggress: 'Borrados {0} de {1} registros, procesando...'
             },
             actions: {
-                listAction: base_url+'instalaciones/listarInstalaciones',
-                deleteAction: base_url+'instalaciones/borrarInstalacion'
+                listAction: base_url+'index.php/instalaciones/listarInstalaciones',
+                deleteAction: base_url+'index.php/instalaciones/borrarInstalacion'
             },
             fields: {
                 idinstalacion: {

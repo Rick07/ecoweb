@@ -89,8 +89,8 @@
             deleteProggress: 'Borrados {0} de {1} registros, procesando...'
             },
             actions: {
-                listAction: base_url+'datos/listarDatos',
-                deleteAction: base_url+'datos/borrarDato'
+                listAction: base_url+'index.php/datos/listarDatos',
+                deleteAction: base_url+'index.php/datos/borrarDato'
             },
             fields: {
                 iddato: {
