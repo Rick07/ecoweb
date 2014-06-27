@@ -34,7 +34,7 @@
           </div>
           <div class="form-group">
             <label for="energiatotal">Energía total (KWh)</label>
-            <input type="number" min="0" id="energiatotal" name="energiatotal" class="form-control" placeholder="Ingrese la energía total generada" required>
+            <input type="number" min="0" step="0.01" id="energiatotal" name="energiatotal" class="form-control" placeholder="Ingrese la energía total generada" required>
           </div>
           <div class="form-group">
             <label for="energiatotal">Tiempo total (Hrs)</label>
@@ -74,6 +74,7 @@
             messages: {
             noDataAvailable: 'No hay informacion disponible',
             areYouSure: '¿Estas seguro?',
+            editRecord: 'Editar registro',
             deleteConfirmation: 'Este registro sera borrrado. ¿Está seguro?',
             save: 'Guardar',
             saving: 'Guardando',
@@ -90,41 +91,84 @@
             },
             actions: {
                 listAction: base_url+'index.php/datos/listarDatos',
+                updateAction: base_url+'index.php/datos/actualizarDato',
                 deleteAction: base_url+'index.php/datos/borrarDato'
             },
             fields: {
                 iddato: {
                     title: 'ID',
                     key: true,
-                    width: '3%'
+                    width: '3%',
+                    list: false
+                    //Estas funciones serviran para personalizar como se muestran los datos
+                    //create: true,
+                    //display: function (data) {
+                    //return '<b>'+data.record.iddato+'</b>';}
+                    //input: function (data) {       
+                    //return '<input id="hour" type="date"  name="fecha"  class="form-control" required/>';}
                 },
                 fecha: {
                     title: 'Fecha',
-                    width: '3%'
+                    width: '3%',
+                    type: 'date',
+                    displayFormat: 'yy-mm-dd',
+                    edit: true,
+                    input: function (data) {
+                      if (data.record) {
+                          return '<input type="date" name="fecha" class="form-control" required value="' + data.record.fecha + '" />';
+                      } 
+                  }
+
                 },
                 hora: {
                     title: 'Hora',
-                    width: '20%'
+                    width: '20%',
+                    input: function (data) {
+                      if (data.record) {
+                          return '<input type="text" name="hora" class="form-control" required value="' + data.record.hora + '" />';
+                      } 
+                  }
                 },
                 energiageneradadia: {
                     title: 'Energía generada al día (KWh)',
-                    width: '35%'
+                    width: '35%',
+                    input: function (data) {
+                      if (data.record) {
+                          return '<input type="number" name="energiageneradadia" class="form-control" required value="' + data.record.energiageneradadia + '" />';
+                      }
+                  }
                 },
                 tiempogeneraciondiaria: {
                     title: 'Tiempo de generación diaria (Hrs:Seg)',
-                    width: '35%'
+                    width: '35%',
+                    input: function (data) {
+                      if (data.record) {
+                          return '<input type="text"  name="tiempogeneraciondiaria" class="form-control" required pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" value="' + data.record.tiempogeneraciondiaria + '" />';
+                      } 
+                  }
                 },
                 energiatotal: {
                     title: 'Energía total (KWh)',
-                    width: '25%'   
+                    width: '25%',
+                    input: function (data) {
+                      if (data.record) {
+                          return '<input type="number" name="energiatotal" class="form-control" required value="' + data.record.energiatotal + '" />';
+                      }
+                  }   
                 },
                  tiempototal: {
                     title: 'Tiempo total (Hrs)',
-                    width: '35%'   
+                    width: '35%',
+                    input: function (data) {
+                      if (data.record) {
+                          return '<input type="number" name="tiempototal" class="form-control" required value="' + data.record.tiempototal + '" />';
+                      }
+                  }   
                 },
                 serie: {
                     title: 'Equipo',
-                    width: '20%'   
+                    width: '20%',
+                    edit: false   
                 }
 
             }
@@ -145,6 +189,7 @@ $(document).ready(function() {
             success: function(data) {
                 alert("DATOS REGISTRADOS");
                 $("#nuevosDat")[0].reset();
+                $('#datosTabla').jtable('load');
             }
         })        
         return false;

@@ -93,11 +93,30 @@ class Datos extends CI_Controller {
         print json_encode($jTableResult);
     }
 
+    public function actualizarDato()
+    {
+        $id = $this->input->post('iddato');
+        $fecha = $this->input->post('fecha');
+        $hora = $this->input->post('hora');
+        $egd = $this->input->post('energiageneradadia');
+        $tgd = $this->input->post('tiempogeneraciondiaria');
+        $et = $this->input->post('energiatotal');
+        $tt = $this->input->post('tiempototal');
+
+        $this->load->model('datos_modelo');
+        $this->datos_modelo->actualizarDato($id, $fecha, $hora, $egd, $tgd, $et, $tt);
+
+        //Return result to jTable
+        $jTableResult = array();
+        $jTableResult['Result'] = "OK";
+        print json_encode($jTableResult);
+    }
+
 	public function importarDatosExcel(){
     	//Cargar PHPExcel library
         $this->load->library('Excel');
         $idequipo = $this->input->post('equipo');
-        $url = base_url().'main';
+        $url = base_url().'index.php/main';
  
     	$name   = $_FILES['file']['name'];
      	$tname  = $_FILES['file']['tmp_name'];

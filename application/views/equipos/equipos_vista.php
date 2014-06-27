@@ -122,6 +122,8 @@ $(document).ready(function() {
             // Mostramos un mensaje con la respuesta de PHP
             success: function(data) {
                 alert("DATOS REGISTRADOS");
+                $("#nuevoEquipo")[0].reset();
+                $('#equipoTabla').jtable('load');
             }
         })        
         return false;

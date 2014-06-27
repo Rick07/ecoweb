@@ -11,7 +11,7 @@ class Datos_modelo extends CI_Model {
 	{
 		$sql="SELECT
 				datos.iddato AS iddato,
-				DATE_FORMAT(datos.fecha, '%d/%m/%Y') AS fecha,
+				datos.fecha AS fecha,
 				DATE_FORMAT(datos.hora, '%h:%i %p') AS hora,
 				datos.energiageneradadia AS energiageneradadia,
 				DATE_FORMAT(datos.tiempogeneraciondiaria, '%h:%i') AS tiempogeneraciondiaria,
@@ -67,6 +67,21 @@ class Datos_modelo extends CI_Model {
 		$this->db->where('iddato', $id);
 		
 		return $this->db->delete('datos');
+	}
+
+	public function actualizarDato($id, $fecha, $hora, $egd, $tgd, $et, $tt)
+	{
+		$datos = array(
+               'fecha' => $fecha,
+               'hora' => $hora,
+               'energiageneradadia' => $egd,
+               'tiempogeneraciondiaria' => $tgd,
+               'energiatotal' => $et,
+               'tiempototal' => $tt
+            );
+
+		$this->db->where('iddato', $id);
+		return $this->db->update('datos', $datos);
 	}
 
 }

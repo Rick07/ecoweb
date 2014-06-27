@@ -54,6 +54,6 @@ class Charts extends CI_Controller {
 
 }
 
-/* End of file plots.php */
-/* Location: ./application/controllers/plots.php */
+/* End of file charts.php */
+/* Location: ./application/controllers/charts.php */
 ?>
