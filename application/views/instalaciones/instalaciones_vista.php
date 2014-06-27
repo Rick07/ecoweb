@@ -146,7 +146,7 @@ $(document).ready(function() {
             success: function(data) {
                 alert("DATOS REGISTRADOS");
                 $("#nuevaInstalacion")[0].reset();
-                $('#instalacionTabla').jtable('load');
+                $('#instalacionTabla').jtable('reload');
             }
         })        
         return false;

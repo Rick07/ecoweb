@@ -123,7 +123,7 @@ $(document).ready(function() {
             success: function(data) {
                 alert("DATOS REGISTRADOS");
                 $("#nuevoEquipo")[0].reset();
-                $('#equipoTabla').jtable('load');
+                $('#equipoTabla').jtable('reload');
             }
         })        
         return false;

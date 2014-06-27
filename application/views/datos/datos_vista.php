@@ -189,7 +189,7 @@ $(document).ready(function() {
             success: function(data) {
                 alert("DATOS REGISTRADOS");
                 $("#nuevosDat")[0].reset();
-                $('#datosTabla').jtable('load');
+                $('#datosTabla').jtable('reload');
             }
         })        
         return false;
