@@ -1,6 +1,6 @@
 <div id="datosTabla" style="width: 1200px;"></div>
 <!-- Button trigger modal -->
-<button class="btn btn-primary btn-info" data-toggle="modal" data-target="#nuevo">Nuevo</button>
+<button id="nuevoreg" class="btn btn-primary btn-info" data-toggle="modal" data-target="#nuevo">Nuevo</button>
 <?php date_default_timezone_set("America/Mexico_City"); ?> 
 <!-- Modal -->
 <div class="modal fade" id="nuevo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -61,6 +61,40 @@
   </div>
 </div>
 
+<input type="hidden" id="exportexcel" class="btn btn-primary btn-info" data-toggle="modal" data-target="#excel" />
+<div id="excel" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Elija  el rango de fechas para exportar los datos</h4>
+      </div>
+      <div class="modal-body">
+        <?php echo validation_errors(); 
+          $atr = array('target' => '_blank', 'id' =>'excelForm');
+         echo form_open('datos/exportarExcel', $atr); ?>
+        <!--<input type="hidden" name="fecha" value="<?php //echo date('Y-m-d');?>">-->
+        <!--<input type="hidden" name="hora" value="<?php //echo date('H:i:s'); ?> ">-->
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6"><label for="hour">Fecha de inicio</label></div>
+              <div class="col-md-6"><label for="hour">Fecha de término</label></div>
+            </div>
+            <div class="row">
+              <div class="col-md-6"><input id="fecha1" type="date"  name="fecha1"  class="form-control" required></div>
+              <div class="col-md-6"><input id="fecha2" type="date"  name="fecha2"  class="form-control" required></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="cerrar2" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            <input type="submit" class="btn btn-primary" value="Exportar">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
  <script type="text/javascript">
     $(document).ready(function () {
       var base_url = "<?=base_url()?>"; 
@@ -88,6 +122,16 @@
             gotoPageLabel: 'Ir a la pagina:',
             canNotDeletedRecords: 'No se pueden borrar {0} de {1} registros',
             deleteProggress: 'Borrados {0} de {1} registros, procesando...'
+            },
+            toolbar: {
+                items: [{
+                    icon: base_url+'images/excel.png',
+                    text: 'Exportar a Excel',
+                    tooltip: 'Exportar los datos de un rango de fecha a formato excel',
+                    click: function () {
+                        $('#exportexcel').click();
+                    }
+                }]
             },
             actions: {
                 listAction: base_url+'index.php/datos/listarDatos',

@@ -84,6 +84,30 @@ class Datos_modelo extends CI_Model {
 		return $this->db->update('datos', $datos);
 	}
 
+	public function exportarExcel($id, $fecha1, $fecha2)
+	{
+		$sql="SELECT
+				datos.fecha AS fecha,
+				DATE_FORMAT (datos.hora, '%H:%i ') AS hora,
+				datos.energiageneradadia AS energiageneradadia,
+				DATE_FORMAT (datos.tiempogeneraciondiaria, '%H:%i') AS tiempogeneraciondiaria,
+				datos.energiatotal AS energiatotal,
+				datos.tiempototal AS tiempototal,
+				equipo.serie AS serie,
+				distribuidor.nombre AS nombre
+				FROM
+				datos
+				INNER JOIN equipo ON datos.equipoid = equipo.idequipo
+				INNER JOIN instalacion ON equipo.instalacionid = instalacion.idinstalacion
+				INNER JOIN distribuidor ON instalacion.distribuidorid = distribuidor.iddistribuidor
+				WHERE
+				instalacion.distribuidorid = $id AND
+				datos.fecha BETWEEN '$fecha1' AND '$fecha2'";
+		$query = $this->db->query($sql);
+
+		return $query->result_array();
+	}
+
 }
 
 /* End of file data_modelo.php */
