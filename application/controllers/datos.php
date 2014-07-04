@@ -157,18 +157,19 @@ class Datos extends CI_Controller {
         $id = $this->session->userdata('id');
         $fecha1 = $this->input->post('fecha1');
         $fecha2 = $this->input->post('fecha2');
+        $nombre = $this->input->post('nombre');
 
         // Se crea el objeto PHPExcel
         $objPHPExcel = new PHPExcel();
 
-            // Se asignan las propiedades del libro
+            /* Se asignan las propiedades del libro
         $objPHPExcel->getProperties()->setCreator("Ricardo") // Nombre del autor
         ->setLastModifiedBy("Ricardo") //Ultimo usuario que lo modificó
         ->setTitle("Reporte Excel con PHP y MySQL") // Titulo
         ->setSubject("Reporte Excel con PHP y MySQL") //Asunto
         ->setDescription("Reporte de datos de equipo") //Descripción
         ->setKeywords("reporte de datos de equipo") //Etiquetas
-        ->setCategory("Reporte excel"); //Categorias
+        ->setCategory("Reporte excel"); //Categorias*/
 
         $titulosColumnas = array('Fecha', 'Hora', 'Energía Generada al Día KWh', 'Tiempo de Generación Diaria', 'Energía Total', 'Tiempo Total', 'Equipo', 'Usuario');
 
@@ -179,9 +180,7 @@ class Datos extends CI_Controller {
         ->setCellValue('C1',  $titulosColumnas[2])
         ->setCellValue('D1',  $titulosColumnas[3])
         ->setCellValue('E1',  $titulosColumnas[4])
-        ->setCellValue('F1',  $titulosColumnas[5])
-        ->setCellValue('G1',  $titulosColumnas[6])
-        ->setCellValue('H1',  $titulosColumnas[7]);
+        ->setCellValue('F1',  $titulosColumnas[5]);
 
         //Se agregan los datos de los alumnos
         $this->load->model('datos_modelo');
@@ -196,9 +195,7 @@ class Datos extends CI_Controller {
                  ->setCellValue('C'.$i, $key['energiageneradadia'])
                  ->setCellValue('D'.$i, $key['tiempogeneraciondiaria'])
                  ->setCellValue('E'.$i, $key['energiatotal'])
-                 ->setCellValue('F'.$i, $key['tiempototal'])
-                 ->setCellValue('G'.$i, $key['serie'])
-                 ->setCellValue('H'.$i, $key['nombre']);
+                 ->setCellValue('F'.$i, $key['tiempototal']);
             $i++;
          }
 
@@ -208,7 +205,7 @@ class Datos extends CI_Controller {
 
                      // Se manda el archivo al navegador web, con el nombre que se indica, en formato 2007
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-            header('Content-Disposition: attachment;filename="Reportedatos.xlsx"');
+            header("Content-Disposition: attachment;filename=$nombre.xlsx");
             header('Cache-Control: max-age=0');
              
             $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');

@@ -73,12 +73,14 @@
         <?php echo validation_errors(); 
           $atr = array('target' => '_blank', 'id' =>'excelForm');
          echo form_open('datos/exportarExcel', $atr); ?>
-        <!--<input type="hidden" name="fecha" value="<?php //echo date('Y-m-d');?>">-->
-        <!--<input type="hidden" name="hora" value="<?php //echo date('H:i:s'); ?> ">-->
+        <div class="form-group">
+            <label for="archivo">Nombre del archivo</label>
+            <input id="archivo" type="text"  name="nombre" placeholder="Escriba el nombre de su archivo excel"  class="form-control" required>
+        </div>
           <div class="form-group">
             <div class="row">
-              <div class="col-md-6"><label for="hour">Fecha de inicio</label></div>
-              <div class="col-md-6"><label for="hour">Fecha de término</label></div>
+              <div class="col-md-6"><label for="fecha1">Fecha de inicio</label></div>
+              <div class="col-md-6"><label for="fecha2">Fecha de término</label></div>
             </div>
             <div class="row">
               <div class="col-md-6"><input id="fecha1" type="date"  name="fecha1"  class="form-control" required></div>
@@ -169,7 +171,7 @@
                     width: '20%',
                     input: function (data) {
                       if (data.record) {
-                          return '<input type="text" name="hora" class="form-control" required value="' + data.record.hora + '" />';
+                          return '<input type="time" name="hora" class="form-control" required value="' + data.record.hora + '" />';
                       } 
                   }
                 },

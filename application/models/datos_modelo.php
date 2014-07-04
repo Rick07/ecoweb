@@ -12,7 +12,7 @@ class Datos_modelo extends CI_Model {
 		$sql="SELECT
 				datos.iddato AS iddato,
 				datos.fecha AS fecha,
-				DATE_FORMAT(datos.hora, '%h:%i %p') AS hora,
+				DATE_FORMAT(datos.hora, '%H:%i') AS hora,
 				datos.energiageneradadia AS energiageneradadia,
 				DATE_FORMAT(datos.tiempogeneraciondiaria, '%h:%i') AS tiempogeneraciondiaria,
 				datos.energiatotal AS energiatotal,
@@ -88,7 +88,7 @@ class Datos_modelo extends CI_Model {
 	{
 		$sql="SELECT
 				datos.fecha AS fecha,
-				DATE_FORMAT (datos.hora, '%H:%i ') AS hora,
+				DATE_FORMAT (datos.hora, '%H:%i') AS hora,
 				datos.energiageneradadia AS energiageneradadia,
 				DATE_FORMAT (datos.tiempogeneraciondiaria, '%H:%i') AS tiempogeneraciondiaria,
 				datos.energiatotal AS energiatotal,
@@ -102,7 +102,9 @@ class Datos_modelo extends CI_Model {
 				INNER JOIN distribuidor ON instalacion.distribuidorid = distribuidor.iddistribuidor
 				WHERE
 				instalacion.distribuidorid = $id AND
-				datos.fecha BETWEEN '$fecha1' AND '$fecha2'";
+				datos.fecha BETWEEN '$fecha1' AND '$fecha2'
+				ORDER BY
+				iddato DESC";
 		$query = $this->db->query($sql);
 
 		return $query->result_array();
