@@ -1,3 +1,9 @@
+<div class="filtering">
+    <form>
+        ID: <input type="text" name="dato" id="dato"  />
+        <button type="submit" id="LoadRecordsButton">Buscar</button>
+    </form>
+</div>
 <div id="datosTabla" style="width: 1200px;"></div>
 <!-- Button trigger modal -->
 <button id="nuevoreg" class="btn btn-primary btn-info" data-toggle="modal" data-target="#nuevo">Nuevo</button>
@@ -145,7 +151,7 @@
                     title: 'ID',
                     key: true,
                     width: '3%',
-                    list: false
+                    list: true
                     //Estas funciones serviran para personalizar como se muestran los datos
                     //create: true,
                     //display: function (data) {
@@ -219,7 +225,17 @@
 
             }
         });
-          $('#datosTabla').jtable('load');
+//Re-load records when user click 'load records' button.
+        $('#LoadRecordsButton').click(function (e) {
+            e.preventDefault();
+            $('#datosTabla').jtable('load', {
+                iddato: $('#dato').val()
+            });
+        });
+ 
+       //Load all records when page is first shown
+        $('#LoadRecordsButton').click();
+          
     });
 </script>
 <script language="javascript">

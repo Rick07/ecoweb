@@ -33,8 +33,9 @@ class Datos extends CI_Controller {
     public function listarDatos()
     {
         $id = $this->session->userdata('id');
+        $iddato = $this->input->post('iddato');
         $this->load->model('datos_modelo');
-        $recordCount = $this->datos_modelo->totalDatosIdDist($id);
+        $recordCount = $this->datos_modelo->totalDatosIdDist($id, $iddato);
 
         foreach ($recordCount as $key) {
             $record = $key['record'];
@@ -44,7 +45,7 @@ class Datos extends CI_Controller {
         $jtStartIndex = $this->input->get('jtStartIndex', TRUE);
         $jtPageSize = $this->input->get('jtPageSize', TRUE);
         
-        $datos = $this->datos_modelo->listarDatosIdDist($id, $jtSorting, $jtStartIndex, $jtPageSize);
+        $datos = $this->datos_modelo->listarDatosIdDist($id, $iddato, $jtSorting, $jtStartIndex, $jtPageSize);
 
         $data = array();
         
