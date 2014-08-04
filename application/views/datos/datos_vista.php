@@ -36,7 +36,7 @@
           </div>
           <div class="form-group">
            <label for="tiempodiario">Tiempo de generación diaria (Horas:minutos)</label>
-            <input type="text" id="tiempodiario" name="tiempodiario" class="form-control" required pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" />
+            <input type="text" id="tiempodiario" name="tiempodiario" class="form-control" required pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" title="Por ejemplo: 13:02" />
           </div>
           <div class="form-group">
             <label for="energiatotal">Energía total (KWh)</label>
@@ -243,7 +243,10 @@ $(document).ready(function() {
    // Interceptamos el evento submit
     $('#nuevosDat').submit(function() {
   // Enviamos el formulario usando AJAX
-        $.ajax({
+    var alerta = confirm('¿Esta seguro que desea registrar estos datos?');
+    if(alerta)
+    {
+      $.ajax({
             type: 'POST',
             url: $(this).attr('action'),
             data: $(this).serialize(),
@@ -255,6 +258,8 @@ $(document).ready(function() {
             }
         })        
         return false;
+    }
+        
     }); 
 });  
 </script>

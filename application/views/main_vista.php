@@ -16,6 +16,12 @@
     <script src="<?php echo base_url()?>js/jtable/jquery.jtable.js" type="text/javascript"></script>
      <!-- Bootstrap -->
     <script src="<?php echo base_url()?>bootstrap/js/bootstrap.min.js"></script>
+    <!-- Mostrar tabla al inicio -->
+    <script type="text/javascript">
+      $(document).ready(function () {
+          $('#instalaciones').click();
+      });
+    </script>
   </head>
   <body>
     <div class="col-md-3 col-md-offset-9">
