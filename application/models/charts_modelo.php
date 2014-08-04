@@ -98,7 +98,7 @@ class Charts_modelo extends CI_Model {
                 WHERE
                 instalacion.distribuidorid = $id AND
                 datos.equipoid = $equipo AND
-                YEARweek(fecha) = YEARweek(CURRENT_date)
+                MONTH(fecha) = MONTH(CURRENT_date)
                 GROUP BY
                 datos.fecha";
         $query = $this->db->query($sql);
